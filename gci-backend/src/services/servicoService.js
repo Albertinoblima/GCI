@@ -45,7 +45,6 @@ const servicoService = {
 
     // É crucial que os outros métodos (update, remove, etc.) também tenham essa verificação
     // ...
-
     /**
      * Lista serviços ativos de uma secretaria
      * @param {number} secretariaId

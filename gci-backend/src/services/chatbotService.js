@@ -1,38 +1,59 @@
 // gci-backend/src/services/chatbotService.js
-import metaSenderService from './metaSenderService.js';
-import atendimentoService from './atendimentoService.js';
-import logger from '../utils/logger.js';
+
 import chatbotRouterService from './chatbotRouterService.js';
+import atendimentoService from './atendimentoService.js';
+import mensagemService from './mensagemService.js';
+import logger from '../utils/logger.js';
 
 /**
- * Processa a mensagem do cidadão, roteando conforme o estado do atendimento.
+ * Processa a mensagem do cidadão, atualiza o estado do atendimento e retorna a próxima resposta do chatbot.
+ * @param {object} atendimento - O atendimento atual.
+ * @param {object} mensagemCidadao - A mensagem recebida do cidadão.
+ * @param {object} municipio - Dados do município (opcional, para contexto).
+ * @param {object} cidadao - Dados do cidadão (opcional, para contexto).
+ * @returns {Promise<object>} Objeto com resposta, opções e novo estado.
  */
-async function processarMensagemCidadao(atendimento, mensagemCidadao, municipio, cidadao) {
-    logger.info(`Chatbot processando mensagem para atendimento ID: ${atendimento.id}`);
+async function processarMensagemCidadao(atendimento, mensagemCidadao, municipio = null, cidadao = null) {
     try {
-        // Chama o roteador para decidir a resposta e próxima etapa
-        const resultado = await chatbotRouterService.proximoPasso(atendimento, mensagemCidadao);
+        // 1. Roteia para o próximo passo do fluxo, passando contexto completo
+        const resultado = await chatbotRouterService.proximoPasso(atendimento, mensagemCidadao, municipio, cidadao);
 
-        // Envia a resposta ao cidadão
-        await metaSenderService.sendWhatsAppTextMessage(
-            cidadao.id_canal_origem,
-            resultado.resposta,
-            municipio.id
-        );
+        // 2. Atualiza o estado do atendimento apenas se mudou
+        let novoEstado = resultado.proximoEstado || atendimento.chatbot_state;
+        if (novoEstado !== atendimento.chatbot_state) {
+            await atendimentoService.atualizarEstadoChatbot(atendimento.id, novoEstado);
+        }
 
-        // Atualiza o estado do atendimento
-        await atendimentoService.update(atendimento.id, {
-            chatbot_state: resultado.proximoEstado
-        }, { id: null, role: 'bot' });
+        // 3. Registra a resposta do bot no histórico, incluindo contexto relevante
+        if (resultado.resposta && resultado.resposta.trim()) {
+            await mensagemService.create({
+                atendimento_id: atendimento.id,
+                remetente_tipo: 'bot',
+                conteudo_texto: resultado.resposta,
+                contexto: {
+                    municipio_id: municipio?.id || atendimento.municipio_id,
+                    cidadao_id: cidadao?.id || atendimento.cidadao_id,
+                    estado_chatbot: novoEstado
+                }
+            });
+        }
 
-        logger.info(`Chatbot respondeu e atualizou o estado do atendimento ${atendimento.id} para ${resultado.proximoEstado}`);
+        // 4. Retorna resposta, opções e estado atualizado
+        return {
+            ...resultado,
+            proximoEstado: novoEstado,
+            contexto: {
+                municipio_id: municipio?.id || atendimento.municipio_id,
+                cidadao_id: cidadao?.id || atendimento.cidadao_id,
+                estado_chatbot: novoEstado
+            }
+        };
     } catch (error) {
-        logger.error(`Erro no chatbot ao processar atendimento ${atendimento.id}`, { error: error.message });
+        logger.error('Erro ao processar mensagem do cidadão no chatbotService', { error: error.message, stack: error.stack });
+        throw error;
     }
 }
 
-const chatbotService = {
+export default {
     processarMensagemCidadao
 };
-
-export default chatbotService;
