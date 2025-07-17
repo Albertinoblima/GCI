@@ -1,0 +1,26 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "CreateAnexoMetadataInput",
+    "description": "Metadados enviados junto com o upload de arquivos",
+    "type": "object",
+    "properties": {
+        "referencia_tipo": {
+            "type": "string",
+            "maxLength": 100,
+            "enum": [
+                "atendimento",
+                "solicitacao_infra",
+                "mensagem_atendimento"
+            ]
+        },
+        "referencia_id": {
+            "type": "integer",
+            "minimum": 1
+        }
+    },
+    "required": [
+        "referencia_tipo",
+        "referencia_id"
+    ],
+    "additionalProperties": true
+}

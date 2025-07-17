@@ -1,0 +1,74 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "CreateServicoInput",
+    "description": "Schema para a criação de um novo serviço vinculado a uma secretaria",
+    "type": "object",
+    "properties": {
+        "nome": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 255,
+            "description": "Nome do serviço."
+        },
+        "emoji": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "maxLength": 10,
+            "description": "Emoji representativo do serviço (opcional)."
+        },
+        "descricao_curta": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "maxLength": 500,
+            "description": "Breve descrição do serviço (opcional)."
+        },
+        "tipo_servico": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "maxLength": 100,
+            "enum": [
+                null,
+                "agendamento_saude",
+                "solicitacao_infra",
+                "matricula_escolar",
+                "informativo",
+                "solicitacao_geral"
+            ],
+            "description": "Tipo do serviço para categorização e lógica de fluxo (opcional)."
+        },
+        "tempo_estimado": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "maxLength": 100,
+            "description": "Tempo estimado para conclusão/atendimento do serviço (ex: 2 dias úteis) (opcional)."
+        },
+        "documentos_necessarios": {
+            "type": [
+                "array",
+                "null"
+            ],
+            "items": {
+                "type": "string",
+                "maxLength": 255
+            },
+            "description": "Lista de documentos necessários para este serviço (opcional)."
+        },
+        "ativo": {
+            "type": "boolean",
+            "default": true,
+            "description": "Indica se o serviço está ativo."
+        }
+    },
+    "required": [
+        "nome"
+    ],
+    "additionalProperties": false
+}

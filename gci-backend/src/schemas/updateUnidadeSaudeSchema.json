@@ -1,0 +1,51 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "UpdateUnidadeSaudeInput",
+    "description": "Schema para atualizar uma unidade de saúde",
+    "type": "object",
+    "properties": {
+        "nome": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 255
+        },
+        "endereco_completo": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "maxLength": 500
+        },
+        "telefone": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "maxLength": 20
+        },
+        "tipo_unidade": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "maxLength": 100,
+            "enum": [
+                null,
+                "PSF",
+                "UBS",
+                "USB",
+                "Hospital",
+                "Clinica",
+                "Clinica Especializada",
+                "Laboratorio",
+                "UPA",
+                "Outro"
+            ]
+        },
+        "ativo": {
+            "type": "boolean"
+        }
+    },
+    "additionalProperties": false,
+    "minProperties": 1
+}

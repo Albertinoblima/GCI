@@ -1,0 +1,48 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "CreateSolicitacaoMatriculaInput",
+    "type": "object",
+    "properties": {
+        "atendimento_id": {
+            "type": [
+                "integer",
+                "null"
+            ],
+            "minimum": 1
+        },
+        "cidadao_id": {
+            "type": "integer",
+            "minimum": 1
+        },
+        "escola_id_solicitada": {
+            "type": "integer",
+            "minimum": 1
+        },
+        "nome_aluno": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "maxLength": 255
+        },
+        "data_nascimento_aluno": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "format": "date"
+        },
+        "serie_solicitada": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "maxLength": 50
+        }
+    },
+    "required": [
+        "cidadao_id",
+        "escola_id_solicitada"
+    ],
+    "additionalProperties": false
+}

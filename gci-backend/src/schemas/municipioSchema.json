@@ -1,0 +1,68 @@
+{
+    "type": "object",
+    "properties": {
+        "nome": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 100
+        },
+        "estado": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 2
+        },
+        "sigla_protocolo": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 10
+        },
+        "ativo": {
+            "type": "boolean"
+        },
+        "logo_url": {
+            "type": "string",
+            "format": "uri",
+            "maxLength": 255,
+            "nullable": true
+        },
+        "cor_primaria": {
+            "type": "string",
+            "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$",
+            "nullable": true
+        },
+        "cor_secundaria": {
+            "type": "string",
+            "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$",
+            "nullable": true
+        },
+        "texto_boas_vindas_geral": {
+            "type": "string",
+            "nullable": true
+        },
+        "config_meta_api": {
+            "type": "object",
+            "nullable": true,
+            "additionalProperties": false,
+            "properties": {
+                "whatsapp_phone_number_id": {
+                    "type": "string"
+                },
+                "messenger_page_id": {
+                    "type": "string"
+                },
+                "instagram_page_id": {
+                    "type": "string"
+                },
+                "access_token": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "required": [
+        "nome",
+        "estado",
+        "sigla_protocolo"
+    ],
+    "additionalProperties": false
+}

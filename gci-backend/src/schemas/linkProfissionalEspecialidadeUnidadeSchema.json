@@ -1,0 +1,21 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "LinkProfissionalEspecialidadeUnidade",
+    "description": "Schema para vincular um profissional a uma especialidade e uma unidade.",
+    "type": "object",
+    "properties": {
+        "especialidade_id": {
+            "type": "integer",
+            "description": "ID da especialidade médica a ser vinculada."
+        },
+        "unidade_id": {
+            "type": "integer",
+            "description": "ID da unidade de saúde onde o profissional atenderá com essa especialidade."
+        }
+    },
+    "required": [
+        "especialidade_id",
+        "unidade_id"
+    ],
+    "additionalProperties": false
+}

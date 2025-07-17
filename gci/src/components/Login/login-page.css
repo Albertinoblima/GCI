@@ -1,0 +1,127 @@
+/* src/components/Login/Login.css */
+.login-page-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f4f8;
+    /* Mesmo fundo do login.html estático */
+    padding: 20px;
+}
+
+.login-container {
+    background-color: #ffffff;
+    padding: 30px 40px;
+    /* Ajustado */
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 420px;
+    /* Um pouco maior */
+    text-align: center;
+}
+
+.login-logo img {
+    width: 100px;
+    /* Ajustado */
+    margin-bottom: 20px;
+}
+
+.login-title {
+    font-size: 1.7rem;
+    /* Ajustado */
+    font-weight: 600;
+    color: #1e293b;
+    margin-bottom: 8px;
+}
+
+.login-subtitle {
+    font-size: 0.9rem;
+    color: #64748b;
+    margin-bottom: 25px;
+}
+
+.form-group {
+    margin-bottom: 18px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.85rem;
+    /* Ajustado */
+    font-weight: 500;
+    margin-bottom: 6px;
+    color: #475569;
+}
+
+.form-group input[type="text"],
+.form-group input[type="password"] {
+    width: 100%;
+    padding: 10px 14px;
+    /* Ajustado */
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    /* Ajustado */
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="password"]:focus {
+    outline: none;
+    border-color: #0284c7;
+    box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.2);
+}
+
+.login-button {
+    background-color: #0284c7;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    /* Ajustado */
+    font-size: 0.95rem;
+    /* Ajustado */
+    font-weight: 500;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.2s ease, opacity 0.2s ease;
+    box-shadow: 0 4px 12px rgba(2, 132, 199, 0.2);
+    margin-top: 10px;
+    /* Espaço antes do botão */
+}
+
+.login-button:hover {
+    background-color: #0369a1;
+}
+
+.login-button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.login-error-message {
+    color: #ef4444;
+    /* red-500 */
+    font-size: 0.85rem;
+    margin-top: 15px;
+    margin-bottom: 0;
+    text-align: center;
+}
+
+.login-footer {
+    margin-top: 20px;
+    font-size: 0.8rem;
+    color: #94a3b8;
+}
+
+.login-footer a {
+    color: #0284c7;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.login-footer a:hover {
+    text-decoration: underline;
+}

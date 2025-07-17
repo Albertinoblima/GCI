@@ -1,0 +1,822 @@
+/* GCI.css - Sistema Integrado Cidadão-Município - Painel Administrativo */
+
+/* 1. RESET BÁSICO E VARIÁVEIS ============================ */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --gci-primary-color: #0284c7;
+    /* Azul Céu (sky-600 do Tailwind) */
+    --gci-primary-color-dark: #0369a1;
+    /* sky-700 */
+    --gci-primary-color-light: #38bdf8;
+    /* sky-400 */
+    --gci-primary-color-rgb: 2, 132, 199;
+    /* Para box-shadow com opacidade */
+
+    --gci-secondary-color: #475569;
+    /* Cinza Ardósia (slate-600) */
+    --gci-secondary-color-light: #94a3b8;
+    /* slate-400 */
+
+    --gci-accent-color: #10b981;
+    /* Verde Esmeralda (emerald-500) */
+    --gci-accent-color-dark: #059669;
+    /* emerald-600 */
+
+    --gci-text-color: #334155;
+    /* slate-700 */
+    --gci-text-color-light: #64748b;
+    /* slate-500 */
+    --gci-heading-color: #1e293b;
+    /* slate-800 */
+
+    --gci-bg-color: #f8fafc;
+    /* slate-50 (fundo principal) */
+    --gci-content-bg-color: #ffffff;
+    /* branco (para cards, painéis) */
+    --gci-sidebar-bg-color: #1e293b;
+    /* slate-800 (sidebar escura) */
+    --gci-sidebar-text-color: #e2e8f0;
+    /* slate-200 */
+    --gci-sidebar-hover-bg: #334155;
+    /* slate-700 */
+    --gci-sidebar-active-bg: var(--gci-primary-color);
+
+    --gci-border-color: #e2e8f0;
+    /* slate-200 */
+    --gci-border-radius: 6px;
+    --gci-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    --gci-box-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+
+    --gci-font-family: 'Inter', sans-serif;
+
+    --gci-success-color: #22c55e;
+    /* green-500 */
+    --gci-warning-color: #f59e0b;
+    /* amber-500 */
+    --gci-danger-color: #ef4444;
+    /* red-500 */
+    --gci-info-color: #3b82f6;
+    /* blue-500 */
+}
+
+/* 2. ESTILOS GLOBAIS ============================ */
+body {
+    font-family: var(--gci-font-family);
+    line-height: 1.6;
+    color: var(--gci-text-color);
+    background-color: var(--gci-bg-color);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: var(--gci-heading-color);
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+    line-height: 1.3;
+}
+
+h1 {
+    font-size: 2rem;
+}
+
+h2 {
+    font-size: 1.75rem;
+}
+
+h3 {
+    font-size: 1.5rem;
+}
+
+h4 {
+    font-size: 1.25rem;
+}
+
+p {
+    margin-bottom: 1rem;
+}
+
+a {
+    color: var(--gci-primary-color);
+    text-decoration: none;
+    transition: color 0.2s ease-in-out;
+}
+
+a:hover {
+    color: var(--gci-primary-color-dark);
+    text-decoration: underline;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* 3. LAYOUT PRINCIPAL ============================ */
+.gci-admin-layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+.gci-sidebar {
+    width: 260px;
+    background-color: var(--gci-sidebar-bg-color);
+    color: var(--gci-sidebar-text-color);
+    padding: 1.5rem 0;
+    transition: width 0.3s ease, left 0.3s ease;
+    /* Adicionado left para transição mobile */
+    overflow-y: auto;
+    flex-shrink: 0;
+    /* Impede que a sidebar encolha */
+}
+
+.gci-sidebar-header {
+    padding: 0 1.5rem 1.5rem 1.5rem;
+    text-align: center;
+    border-bottom: 1px solid var(--gci-sidebar-hover-bg);
+    margin-bottom: 1rem;
+}
+
+.gci-sidebar-logo {
+    font-size: 1.2rem;
+    /* Ajustado para caber melhor com ícone */
+    font-weight: 700;
+    color: #fff;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.gci-sidebar-logo:hover {
+    text-decoration: none;
+}
+
+.gci-sidebar-logo .nav-icon {
+    /* Estilo para o ícone do logo */
+    font-size: 1.8rem;
+    /* Ícone do logo um pouco maior */
+    margin-right: 0.5rem;
+}
+
+
+.gci-sidebar-nav ul {
+    list-style: none;
+}
+
+.gci-sidebar-nav li a {
+    display: flex;
+    align-items: center;
+    padding: 0.8rem 1.5rem;
+    color: var(--gci-sidebar-text-color);
+    text-decoration: none;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    border-left: 4px solid transparent;
+    /* Para indicar link ativo */
+}
+
+.gci-sidebar-nav li a .nav-icon {
+    margin-right: 0.8rem;
+    width: 20px;
+    text-align: center;
+    font-size: 1.1rem;
+    /* Tamanho dos ícones do menu */
+}
+
+.gci-sidebar-nav li a .nav-text {
+    transition: opacity 0.2s ease;
+    /* Para suavizar o aparecimento/desaparecimento do texto */
+}
+
+
+.gci-sidebar-nav li a:hover {
+    background-color: var(--gci-sidebar-hover-bg);
+    color: #fff;
+    text-decoration: none;
+}
+
+.gci-sidebar-nav li a.gci-active,
+.gci-sidebar-nav li a.gci-active:hover {
+    background-color: var(--gci-sidebar-active-bg);
+    color: #fff;
+    font-weight: 500;
+    border-left-color: var(--gci-accent-color);
+}
+
+.gci-main-wrapper {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    /* Evita scroll horizontal desnecessário */
+}
+
+.gci-topbar {
+    background-color: var(--gci-content-bg-color);
+    padding: 0.75rem 1.5rem;
+    /* Padding ajustado */
+    box-shadow: var(--gci-box-shadow);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--gci-border-color);
+    height: 60px;
+    /* Altura fixa para o topbar */
+    flex-shrink: 0;
+}
+
+.gci-topbar-title {
+    font-size: 1.25rem;
+    color: var(--gci-heading-color);
+    margin-bottom: 0;
+}
+
+.gci-user-menu {
+    display: flex;
+    align-items: center;
+}
+
+.gci-user-menu a {
+    color: var(--gci-text-color);
+    margin-left: 1.2rem;
+    /* Espaçamento aumentado */
+    display: flex;
+    align-items: center;
+    font-size: 0.9rem;
+}
+
+.gci-user-menu a:hover {
+    color: var(--gci-primary-color);
+    text-decoration: none;
+}
+
+.gci-user-menu a span:not(.gci-badge) {
+    /* Para ícones no user menu */
+    margin-right: 0.3rem;
+    font-size: 1.1rem;
+}
+
+
+.gci-main-content {
+    flex-grow: 1;
+    padding: 1.5rem;
+    overflow-y: auto;
+}
+
+.gci-page-header {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--gci-border-color);
+}
+
+.gci-page-header h1 {
+    margin-bottom: 0.25rem;
+}
+
+.gci-page-header p {
+    color: var(--gci-text-color-light);
+    font-size: 0.9rem;
+    margin-bottom: 0;
+}
+
+
+.gci-footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: var(--gci-content-bg-color);
+    border-top: 1px solid var(--gci-border-color);
+    font-size: 0.875rem;
+    color: var(--gci-text-color-light);
+    flex-shrink: 0;
+}
+
+/* Sidebar Colapsada */
+.gci-sidebar.collapsed {
+    width: 80px;
+}
+
+.gci-sidebar.collapsed .gci-sidebar-header .gci-sidebar-logo .nav-text {
+    display: none;
+}
+
+.gci-sidebar.collapsed .gci-sidebar-header .gci-sidebar-logo .nav-icon {
+    margin-right: 0;
+    /* Remove margem quando só o ícone do logo é visível */
+}
+
+.gci-sidebar.collapsed .gci-sidebar-nav li a .nav-text {
+    opacity: 0;
+    /* Efeito de fade out para o texto */
+    visibility: hidden;
+    width: 0;
+    overflow: hidden;
+}
+
+.gci-sidebar.collapsed .gci-sidebar-nav li a .nav-icon {
+    margin-right: 0;
+}
+
+.gci-sidebar.collapsed .gci-sidebar-nav li a {
+    justify-content: center;
+}
+
+
+/* 4. COMPONENTES COMUNS ============================ */
+
+/* Botões */
+.gci-btn {
+    display: inline-block;
+    font-weight: 500;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    user-select: none;
+    background-color: transparent;
+    border: 1px solid transparent;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    border-radius: var(--gci-border-radius);
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+.gci-btn:hover {
+    text-decoration: none;
+}
+
+.gci-btn-primary {
+    color: #fff;
+    background-color: var(--gci-primary-color);
+    border-color: var(--gci-primary-color);
+}
+
+.gci-btn-primary:hover {
+    color: #fff;
+    background-color: var(--gci-primary-color-dark);
+    border-color: var(--gci-primary-color-dark);
+}
+
+.gci-btn-secondary {
+    color: #fff;
+    background-color: var(--gci-secondary-color);
+    border-color: var(--gci-secondary-color);
+}
+
+.gci-btn-secondary:hover {
+    color: #fff;
+    background-color: #334155;
+    border-color: #334155;
+}
+
+.gci-btn-success {
+    color: #fff;
+    background-color: var(--gci-success-color);
+    border-color: var(--gci-success-color);
+}
+
+.gci-btn-danger {
+    color: #fff;
+    background-color: var(--gci-danger-color);
+    border-color: var(--gci-danger-color);
+}
+
+.gci-btn-warning {
+    color: var(--gci-heading-color);
+    background-color: var(--gci-warning-color);
+    border-color: var(--gci-warning-color);
+}
+
+.gci-btn-info {
+    color: #fff;
+    background-color: var(--gci-info-color);
+    border-color: var(--gci-info-color);
+}
+
+.gci-btn-outline-primary {
+    color: var(--gci-primary-color);
+    border-color: var(--gci-primary-color);
+}
+
+.gci-btn-outline-primary:hover {
+    color: #fff;
+    background-color: var(--gci-primary-color);
+    border-color: var(--gci-primary-color);
+}
+
+.gci-btn-sm {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.8rem;
+}
+
+.gci-btn-lg {
+    padding: 0.75rem 1.5rem;
+    font-size: 1.1rem;
+}
+
+
+/* Formulários */
+.gci-form-group {
+    margin-bottom: 1rem;
+}
+
+.gci-form-label {
+    display: inline-block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--gci-heading-color);
+}
+
+.gci-form-control {
+    display: block;
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.9rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--gci-text-color);
+    background-color: var(--gci-content-bg-color);
+    background-clip: padding-box;
+    border: 1px solid var(--gci-border-color);
+    border-radius: var(--gci-border-radius);
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+.gci-form-control:focus {
+    border-color: var(--gci-primary-color-light);
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(var(--gci-primary-color-rgb), 0.25);
+}
+
+textarea.gci-form-control {
+    min-height: calc(1.5em + 1rem + 2px);
+    resize: vertical;
+}
+
+select.gci-form-control {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23333' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 16px 12px;
+    padding-right: 2.5rem;
+}
+
+
+/* Tabelas */
+.gci-table {
+    width: 100%;
+    margin-bottom: 1rem;
+    color: var(--gci-text-color);
+    border-collapse: collapse;
+}
+
+.gci-table th,
+.gci-table td {
+    padding: 0.75rem;
+    vertical-align: top;
+    border-top: 1px solid var(--gci-border-color);
+}
+
+.gci-table thead th {
+    vertical-align: bottom;
+    border-bottom: 2px solid var(--gci-border-color);
+    background-color: #f1f5f9;
+    color: var(--gci-heading-color);
+    text-align: left;
+    font-weight: 600;
+}
+
+.gci-table tbody tr:hover {
+    background-color: rgba(0, 0, 0, 0.03);
+}
+
+.gci-table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgba(0, 0, 0, 0.02);
+}
+
+.gci-table-striped tbody tr:nth-of-type(odd):hover {
+    background-color: rgba(0, 0, 0, 0.04);
+}
+
+
+/* Cards / Painéis */
+.gci-card {
+    background-color: var(--gci-content-bg-color);
+    border: 1px solid var(--gci-border-color);
+    border-radius: var(--gci-border-radius);
+    box-shadow: var(--gci-box-shadow);
+    margin-bottom: 1.5rem;
+}
+
+.gci-card-header {
+    padding: 1rem 1.25rem;
+    margin-bottom: 0;
+    background-color: rgba(0, 0, 0, 0.03);
+    border-bottom: 1px solid var(--gci-border-color);
+    border-top-left-radius: var(--gci-border-radius);
+    border-top-right-radius: var(--gci-border-radius);
+}
+
+.gci-card-header h3,
+.gci-card-header h4 {
+    margin-bottom: 0;
+    font-size: 1.1rem;
+}
+
+.gci-card-body {
+    padding: 1.25rem;
+}
+
+.gci-card-footer {
+    padding: 1rem 1.25rem;
+    background-color: rgba(0, 0, 0, 0.03);
+    border-top: 1px solid var(--gci-border-color);
+    border-bottom-left-radius: var(--gci-border-radius);
+    border-bottom-right-radius: var(--gci-border-radius);
+}
+
+/* Alertas */
+.gci-alert {
+    position: relative;
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: var(--gci-border-radius);
+}
+
+.gci-alert-primary {
+    color: #004085;
+    background-color: #cce5ff;
+    border-color: #b8daff;
+}
+
+.gci-alert-secondary {
+    color: #383d41;
+    background-color: #e2e3e5;
+    border-color: #d6d8db;
+}
+
+.gci-alert-success {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+}
+
+.gci-alert-danger {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+}
+
+.gci-alert-warning {
+    color: #856404;
+    background-color: #fff3cd;
+    border-color: #ffeeba;
+}
+
+.gci-alert-info {
+    color: #0c5460;
+    background-color: #d1ecf1;
+    border-color: #bee5eb;
+}
+
+
+/* 5. CLASSES UTILITÁRIAS SIMPLES ============================ */
+.gci-mt-1 {
+    margin-top: 0.25rem !important;
+}
+
+.gci-mt-2 {
+    margin-top: 0.5rem !important;
+}
+
+.gci-mt-3 {
+    margin-top: 1rem !important;
+}
+
+.gci-mt-4 {
+    margin-top: 1.5rem !important;
+}
+
+.gci-mt-5 {
+    margin-top: 3rem !important;
+}
+
+.gci-mb-1 {
+    margin-bottom: 0.25rem !important;
+}
+
+.gci-mb-2 {
+    margin-bottom: 0.5rem !important;
+}
+
+.gci-mb-3 {
+    margin-bottom: 1rem !important;
+}
+
+.gci-mb-4 {
+    margin-bottom: 1.5rem !important;
+}
+
+.gci-mb-5 {
+    margin-bottom: 3rem !important;
+}
+
+.gci-pt-1 {
+    padding-top: 0.25rem !important;
+}
+
+/* ... (adicione mais conforme necessário) */
+.gci-text-center {
+    text-align: center !important;
+}
+
+.gci-text-right {
+    text-align: right !important;
+}
+
+.gci-text-left {
+    text-align: left !important;
+}
+
+.gci-d-flex {
+    display: flex !important;
+}
+
+.gci-justify-content-between {
+    justify-content: space-between !important;
+}
+
+.gci-align-items-center {
+    align-items: center !important;
+}
+
+.gci-w-100 {
+    width: 100% !important;
+}
+
+/* Estilos para o Dashboard e Conteúdo Específico (já adicionados na resposta anterior, mas repetindo para garantir) */
+.gci-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.gci-stat-card {
+    background-color: var(--gci-content-bg-color);
+    padding: 1.5rem;
+    border-radius: var(--gci-border-radius);
+    box-shadow: var(--gci-box-shadow);
+    text-align: center;
+}
+
+.gci-stat-card h3 {
+    font-size: 0.9rem;
+    color: var(--gci-text-color-light);
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.gci-stat-card .gci-stat-number {
+    font-size: 2.25rem;
+    font-weight: 600;
+    color: var(--gci-heading-color);
+    margin-bottom: 0.25rem;
+    line-height: 1;
+}
+
+.gci-stat-card .gci-stat-change {
+    font-size: 0.8rem;
+    color: var(--gci-text-color-light);
+}
+
+.gci-stat-card .gci-stat-positive {
+    color: var(--gci-success-color);
+}
+
+.gci-stat-card .gci-stat-negative {
+    color: var(--gci-danger-color);
+}
+
+/* Badges de Status */
+.gci-status-badge {
+    display: inline-block;
+    padding: 0.25em 0.6em;
+    font-size: 0.75rem;
+    font-weight: 600;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 0.25rem;
+    color: #fff;
+}
+
+.gci-status-aberto {
+    background-color: var(--gci-info-color);
+}
+
+.gci-status-andamento {
+    background-color: var(--gci-warning-color);
+    color: var(--gci-heading-color);
+}
+
+.gci-status-resolvido {
+    background-color: var(--gci-success-color);
+}
+
+.gci-status-fechado {
+    background-color: var(--gci-secondary-color);
+}
+
+.gci-status-cancelado {
+    background-color: var(--gci-danger-color);
+}
+
+/* Badge de Notificação no Topbar */
+.gci-user-menu .gci-badge {
+    position: relative;
+    top: -8px;
+    right: -2px;
+    padding: 2px 5px;
+    border-radius: 50%;
+    background-color: var(--gci-danger-color);
+    color: white;
+    font-size: 0.7rem;
+    font-weight: bold;
+}
+
+/* Botão de Toggle da Sidebar (Hamburguer) */
+.gci-sidebar-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--gci-heading-color);
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .gci-sidebar {
+        position: fixed;
+        left: -260px;
+        /* Começa escondida */
+        z-index: 1000;
+        height: 100%;
+    }
+
+    .gci-sidebar.open {
+        left: 0;
+        /* Mostra a sidebar */
+    }
+
+    .gci-sidebar.collapsed {
+        /* Em mobile, colapsado significa escondido */
+        left: -260px;
+        width: 260px;
+        /* Mantém a largura para quando abrir */
+    }
+
+    .gci-sidebar.collapsed .gci-sidebar-nav li a .nav-text {
+        /* Garante que o texto não reapareça estranhamente */
+        opacity: 1;
+        visibility: visible;
+        width: auto;
+    }
+
+    .gci-sidebar.collapsed.open .gci-sidebar-nav li a .nav-text {
+        opacity: 1;
+        visibility: visible;
+        width: auto;
+    }
+
+
+    .gci-sidebar-toggle {
+        display: block;
+    }
+
+    .gci-topbar-title {
+        margin-left: 0.5rem;
+    }
+
+    /* .gci-main-wrapper { */
+    /* Não precisa de margin-left quando a sidebar é fixed */
+    /* } */
+}

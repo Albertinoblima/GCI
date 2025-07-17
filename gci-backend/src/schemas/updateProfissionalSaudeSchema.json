@@ -1,0 +1,42 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "UpdateProfissionalSaude",
+    "description": "Schema para atualização de um profissional de saúde existente.",
+    "type": "object",
+    "properties": {
+        "nome_completo": {
+            "type": "string",
+            "minLength": 5,
+            "maxLength": 150,
+            "description": "Nome completo do profissional."
+        },
+        "registro_conselho": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 50,
+            "description": "Número do registro profissional (ex: CRM, COREN)."
+        },
+        "usuario_id": {
+            "type": [
+                "integer",
+                "null"
+            ],
+            "description": "ID do usuário vinculado ao profissional (opcional)."
+        },
+        "email_google_calendar": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "maxLength": 100,
+            "format": "email",
+            "description": "Email para integração com Google Calendar (opcional)."
+        },
+        "ativo": {
+            "type": "boolean",
+            "description": "Controla se o profissional está ativo no sistema."
+        }
+    },
+    "minProperties": 1,
+    "additionalProperties": false
+}

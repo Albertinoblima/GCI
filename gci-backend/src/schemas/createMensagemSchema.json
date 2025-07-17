@@ -1,0 +1,146 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "CreateMensagemAtendimentoInput",
+    "description": "Schema para registrar uma nova mensagem em um atendimento",
+    "type": "object",
+    "properties": {
+        "atendimento_id": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "ID do atendimento ao qual a mensagem pertence."
+        },
+        "remetente_tipo": {
+            "type": "string",
+            "enum": [
+                "cidadao",
+                "bot",
+                "agente"
+            ],
+            "description": "Tipo de remetente da mensagem."
+        },
+        "agente_id": {
+            "type": [
+                "integer",
+                "null"
+            ],
+            "minimum": 1,
+            "description": "ID do agente do sistema (usuário) se remetente_tipo for 'agente'."
+        },
+        "cidadao_id": {
+            "type": [
+                "integer",
+                "null"
+            ],
+            "minimum": 1,
+            "description": "ID do cidadão se remetente_tipo for 'cidadao'."
+        },
+        "conteudo_texto": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "description": "Conteúdo textual da mensagem. Pode ser null se for apenas mídia."
+        },
+        "tipo_midia": {
+            "type": "string",
+            "enum": [
+                "texto",
+                "imagem",
+                "audio",
+                "video",
+                "documento",
+                "localizacao",
+                "contato",
+                "sticker",
+                "interativo",
+                "arquivo"
+            ],
+            "default": "texto",
+            "description": "Tipo de mídia da mensagem."
+        },
+        "url_midia": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "format": "uri",
+            "maxLength": 500,
+            "description": "URL da mídia, se aplicável (ex: após upload para storage)."
+        },
+        "nome_arquivo_original_midia": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "maxLength": 255,
+            "description": "Nome original do arquivo de mídia (para referência, se aplicável)."
+        },
+        "id_mensagem_canal_origem": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "maxLength": 255,
+            "description": "ID da mensagem na plataforma de origem (ex: WAMID do WhatsApp, m_mid do Messenger)."
+        },
+        "timestamp_mensagem": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "format": "date-time",
+            "description": "Timestamp de quando a mensagem foi efetivamente enviada/recebida no canal de origem. Se null, usa o created_at do registro."
+        },
+        "status_envio_canal": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "enum": [
+                null,
+                "pendente",
+                "enviado",
+                "entregue",
+                "lido",
+                "falhou",
+                "recebido_pelo_sistema"
+            ],
+            "description": "Status da mensagem no canal de origem (relevante para mensagens enviadas pelo sistema/agente)."
+        }
+    },
+    "required": [
+        "atendimento_id",
+        "remetente_tipo"
+    ],
+    "additionalProperties": false,
+    "allOf": [
+        {
+            "if": {
+                "properties": {
+                    "remetente_tipo": {
+                        "const": "agente"
+                    }
+                }
+            },
+            "then": {
+                "required": [
+                    "agente_id"
+                ]
+            }
+        },
+        {
+            "if": {
+                "properties": {
+                    "remetente_tipo": {
+                        "const": "cidadao"
+                    }
+                }
+            },
+            "then": {
+                "required": [
+                    "cidadao_id"
+                ]
+            }
+        }
+    ]
+}

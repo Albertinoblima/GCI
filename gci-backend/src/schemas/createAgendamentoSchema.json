@@ -1,0 +1,24 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "CreateAgendamentoSaude",
+    "type": "object",
+    "properties": {
+        "cidadao_id": {
+            "type": "integer"
+        },
+        "horario_disponivel_id": {
+            "type": "integer"
+        },
+        "tipo_exame_id": {
+            "type": [
+                "integer",
+                "null"
+            ]
+        }
+    },
+    "required": [
+        "cidadao_id",
+        "horario_disponivel_id"
+    ],
+    "additionalProperties": false
+}

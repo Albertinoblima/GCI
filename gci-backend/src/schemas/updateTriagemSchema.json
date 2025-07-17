@@ -1,0 +1,21 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "UpdateTriagemSaude",
+    "type": "object",
+    "properties": {
+        "status_triagem": {
+            "type": "string",
+            "enum": [
+                "pendente_analise",
+                "analisada",
+                "encaminhada",
+                "finalizada"
+            ]
+        },
+        "dados_coletados": {
+            "type": "object"
+        }
+    },
+    "minProperties": 1,
+    "additionalProperties": false
+}

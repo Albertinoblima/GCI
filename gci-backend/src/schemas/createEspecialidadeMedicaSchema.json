@@ -1,0 +1,24 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "CreateEspecialidadeMedica",
+    "description": "Schema para criação de uma nova especialidade médica.",
+    "type": "object",
+    "properties": {
+        "nome_especialidade": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 100
+        },
+        "descricao": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "maxLength": 255
+        }
+    },
+    "required": [
+        "nome_especialidade"
+    ],
+    "additionalProperties": false
+}

@@ -1,0 +1,98 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "UpdateMunicipioInput",
+    "description": "Schema para a atualização de um município",
+    "type": "object",
+    "properties": {
+        "nome": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 255
+        },
+        "estado": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 2,
+            "pattern": "^[A-Z]{2}$"
+        },
+        "codigo_ibge": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "pattern": "^[0-9]{7}$"
+        },
+        "logo_url": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "format": "uri"
+        },
+        "cor_primaria": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+        },
+        "cor_secundaria": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+        },
+        "texto_boas_vindas_geral": {
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "config_meta_api": {
+            "type": [
+                "object",
+                "null"
+            ],
+            "properties": {
+                "whatsapp_phone_number_id": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "messenger_page_id": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "instagram_page_id": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "access_token": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "additionalProperties": true
+        },
+        "sigla_protocolo": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "maxLength": 10
+        },
+        "ativo": {
+            "type": "boolean"
+        }
+    },
+    "additionalProperties": false,
+    "minProperties": 1
+}

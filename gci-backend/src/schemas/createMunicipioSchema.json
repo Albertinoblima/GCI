@@ -1,0 +1,60 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "CreateMunicipioInput",
+    "description": "Schema para a criação de um novo município",
+    "type": "object",
+    "properties": {
+        "nome": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 255,
+            "description": "Nome do município."
+        },
+        "sigla_protocolo": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "maxLength": 10,
+            "description": "Sigla para geração de protocolos (ex: PREF)."
+        },
+        "config_meta_api": {
+            "type": [
+                "object",
+                "null"
+            ],
+            "description": "Configurações da API Meta/WhatsApp."
+        },
+        "ativo": {
+            "type": "boolean",
+            "default": true,
+            "description": "Indica se o município está ativo no sistema."
+        },
+        "estado": {
+            "type": "string",
+            "description": "Campo ignorado pelo backend - mantido para compatibilidade."
+        },
+        "estado_id": {
+            "type": "number",
+            "description": "Campo ignorado pelo backend - mantido para compatibilidade."
+        },
+        "codigo_ibge": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "description": "Campo ignorado pelo backend - mantido para compatibilidade."
+        },
+        "logo_url": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "description": "Campo ignorado pelo backend - mantido para compatibilidade."
+        }
+    },
+    "required": [
+        "nome"
+    ],
+    "additionalProperties": true
+}

@@ -1,0 +1,1206 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema GCI - Gestão de Cidades Inteligentes - Documentação Completa</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f8f9fa;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .toc {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .toc h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+
+        .toc ul {
+            list-style: none;
+        }
+
+        .toc>ul>li {
+            margin-bottom: 10px;
+        }
+
+        .toc a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 0;
+            display: block;
+            border-left: 3px solid transparent;
+            padding-left: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .toc a:hover {
+            color: #667eea;
+            border-left-color: #667eea;
+        }
+
+        .section {
+            background: white;
+            margin-bottom: 30px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .section-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px 30px;
+            font-size: 1.5em;
+            font-weight: 600;
+        }
+
+        .section-content {
+            padding: 30px;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+        }
+
+        h2 {
+            font-size: 1.8em;
+            color: #667eea;
+        }
+
+        h3 {
+            font-size: 1.4em;
+            color: #764ba2;
+        }
+
+        h4 {
+            font-size: 1.2em;
+        }
+
+        .module-card {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .module-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .module-title {
+            color: #667eea;
+            font-size: 1.3em;
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .module-icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 10px;
+            background: #667eea;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .functionality-list {
+            list-style: none;
+            margin: 15px 0;
+        }
+
+        .functionality-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .functionality-list li:before {
+            content: "✓";
+            color: #28a745;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .hierarchy-tree {
+            font-family: monospace;
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+
+        .tech-stack {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .tech-category {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+
+        .tech-category h4 {
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
+        .tech-list {
+            list-style: none;
+        }
+
+        .tech-list li {
+            padding: 5px 0;
+            color: #666;
+        }
+
+        .code-block {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+            margin: 15px 0;
+        }
+
+        .tutorial-step {
+            background: #f8f9fa;
+            border-left: 4px solid #28a745;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .tutorial-step h4 {
+            color: #28a745;
+            margin-bottom: 10px;
+        }
+
+        .warning {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            color: #856404;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+
+        .info {
+            background: #d1ecf1;
+            border: 1px solid #bee5eb;
+            color: #0c5460;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+
+        .flow-diagram {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .flow-box {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 25px;
+            font-weight: 500;
+        }
+
+        .arrow {
+            font-size: 1.5em;
+            color: #667eea;
+            margin: 0 10px;
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+
+            .section {
+                break-inside: avoid;
+            }
+
+            .toc {
+                page-break-after: always;
+            }
+        }
+
+        .user-roles {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .role-card {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+        }
+
+        .role-title {
+            color: #667eea;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .support-contact {
+            text-align: center;
+            margin-top: 50px;
+            padding: 30px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <h1>Sistema GCI</h1>
+        <p>Gestão de Cidades Inteligentes - Documentação Completa</p>
+        <p>Versão 1.0.0 | Junho 2025</p>
+    </div>
+
+    <div class="toc">
+        <h2>📋 Índice</h2>
+        <ul>
+            <li><a href="#visao-geral">1. Visão Geral do Sistema</a></li>
+            <li><a href="#arquitetura">2. Arquitetura do Sistema</a></li>
+            <li><a href="#tecnologias">3. Stack Tecnológico</a></li>
+            <li><a href="#modulos">4. Módulos do Sistema</a></li>
+            <li><a href="#hierarquia">5. Hierarquia de Usuários</a></li>
+            <li><a href="#funcionalidades">6. Funcionalidades Principais</a></li>
+            <li><a href="#fluxos">7. Fluxos de Trabalho</a></li>
+            <li><a href="#tutorial">8. Tutorial de Uso</a></li>
+            <li><a href="#instalacao">9. Guia de Instalação</a></li>
+            <li><a href="#desenvolvimento">10. Guia para Desenvolvedores</a></li>
+        </ul>
+    </div>
+
+    <div class="section" id="visao-geral">
+        <div class="section-header">1. 🏛️ Visão Geral do Sistema</div>
+        <div class="section-content">
+            <h3>O que é o Sistema GCI?</h3>
+            <p>O Sistema de Gestão de Cidades Inteligentes (GCI) é uma plataforma completa e integrada desenvolvida para
+                modernizar e digitalizar a gestão municipal. O sistema oferece ferramentas abrangentes para administrar
+                diferentes áreas da gestão pública, incluindo saúde, educação, atendimento ao cidadão e administração
+                geral.</p>
+
+            <h3>🎯 Objetivos Principais</h3>
+            <ul>
+                <li><strong>Digitalização de Processos:</strong> Transformar processos manuais em fluxos digitais
+                    eficientes</li>
+                <li><strong>Integração de Serviços:</strong> Centralizar diferentes áreas da administração municipal
+                </li>
+                <li><strong>Melhoria no Atendimento:</strong> Oferecer múltiplos canais de atendimento ao cidadão</li>
+                <li><strong>Gestão de Dados:</strong> Centralizar e organizar informações municipais</li>
+                <li><strong>Transparência:</strong> Facilitar o acesso a informações e serviços públicos</li>
+                <li><strong>Eficiência Operacional:</strong> Otimizar recursos e processos administrativos</li>
+            </ul>
+
+            <h3>🌟 Características Principais</h3>
+            <div class="module-card">
+                <div class="module-title">
+                    <span class="module-icon"></span>
+                    Sistema Multi-tenant
+                </div>
+                <p>Suporta múltiplos municípios em uma única instalação, com isolamento completo de dados e
+                    configurações personalizáveis por município.</p>
+            </div>
+
+            <div class="module-card">
+                <div class="module-title">
+                    <span class="module-icon"></span>
+                    Interface Responsiva
+                </div>
+                <p>Interface moderna e responsiva que se adapta a diferentes dispositivos (desktop, tablet, smartphone).
+                </p>
+            </div>
+
+            <div class="module-card">
+                <div class="module-title">
+                    <span class="module-icon"></span>
+                    Controle de Acesso Granular
+                </div>
+                <p>Sistema de permissões baseado em roles com controle fino sobre funcionalidades e dados.</p>
+            </div>
+
+            <div class="module-card">
+                <div class="module-title">
+                    <span class="module-icon"></span>
+                    Integração com Serviços Externos
+                </div>
+                <p>Integração com WhatsApp Business, Google Calendar, e outros serviços para ampliar as funcionalidades.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section" id="arquitetura">
+        <div class="section-header">2. 🏗️ Arquitetura do Sistema</div>
+        <div class="section-content">
+            <h3>Arquitetura Geral</h3>
+            <p>O sistema GCI segue uma arquitetura moderna de aplicação web com separação clara entre frontend e
+                backend:</p>
+
+            <div class="flow-diagram">
+                <div class="flow-box">Frontend (React)</div>
+                <span class="arrow">↔</span>
+                <div class="flow-box">API REST</div>
+                <span class="arrow">↔</span>
+                <div class="flow-box">Backend (Node.js)</div>
+                <span class="arrow">↔</span>
+                <div class="flow-box">Banco de Dados (PostgreSQL)</div>
+            </div>
+
+            <h3>🖥️ Frontend (gci-frontend)</h3>
+            <ul>
+                <li><strong>Framework:</strong> React 18 com Vite</li>
+                <li><strong>Roteamento:</strong> React Router DOM v6</li>
+                <li><strong>Estado Global:</strong> Context API</li>
+                <li><strong>Gerenciamento de Servidor:</strong> TanStack Query (React Query)</li>
+                <li><strong>Interface:</strong> Tailwind CSS + Radix UI</li>
+                <li><strong>Formulários:</strong> React Hook Form + Zod</li>
+                <li><strong>Comunicação:</strong> Axios + WebSockets</li>
+            </ul>
+
+            <h3>⚙️ Backend (gci-backend)</h3>
+            <ul>
+                <li><strong>Runtime:</strong> Node.js com módulos ES6</li>
+                <li><strong>Framework:</strong> Express.js</li>
+                <li><strong>Banco de Dados:</strong> PostgreSQL</li>
+                <li><strong>Autenticação:</strong> JWT (JSON Web Tokens)</li>
+                <li><strong>Validação:</strong> AJV</li>
+                <li><strong>Documentação:</strong> Swagger/OpenAPI</li>
+                <li><strong>Logs:</strong> Winston</li>
+                <li><strong>WebSockets:</strong> Socket.io</li>
+            </ul>
+
+            <h3>📁 Estrutura de Pastas (Produção)</h3>
+            <div class="hierarchy-tree">
+                GCI/
+                ├── gci-frontend/ # Aplicação React
+                │ ├── src/
+                │ ├── public/
+                │ └── dist/ # Build de produção
+                ├── gci-backend/ # API Node.js
+                │ ├── src/
+                │ ├── config/
+                │ └── Dockerfile
+                ├── gci/ # Aplicação legada (React)
+                └── Documentacao_Sistema_GCI.html
+            </div>
+            <div class="info">
+                <strong>Limpeza de Produção:</strong> Pastas e arquivos de testes, logs, scripts auxiliares, seeds e
+                relatórios técnicos foram removidos para garantir segurança e performance. Veja
+                <code>_EXCLUSAO_PRODUCAO.txt</code> para detalhes.
+            </div>
+        </div>
+    </div>
+
+    <div class="section" id="tecnologias">
+        <div class="section-header">3. 💻 Stack Tecnológico</div>
+        <div class="section-content">
+            <div class="tech-stack">
+                <div class="tech-category">
+                    <h4>Frontend</h4>
+                    <ul class="tech-list">
+                        <li>React 18.3.1</li>
+                        <li>Vite 5.4.19</li>
+                        <li>TypeScript (JSConfig)</li>
+                        <li>React Router DOM 6</li>
+                        <li>TanStack React Query</li>
+                        <li>React Hook Form</li>
+                        <li>Zod (Validação)</li>
+                        <li>Tailwind CSS</li>
+                        <li>Radix UI</li>
+                        <li>Lucide React (Ícones)</li>
+                        <li>Recharts (Gráficos)</li>
+                        <li>Socket.io Client</li>
+                        <li>Axios</li>
+                    </ul>
+                </div>
+
+                <div class="tech-category">
+                    <h4>Backend</h4>
+                    <ul class="tech-list">
+                        <li>Node.js (ES Modules)</li>
+                        <li>Express.js 4.19.2</li>
+                        <li>PostgreSQL</li>
+                        <li>JWT (jsonwebtoken)</li>
+                        <li>bcryptjs</li>
+                        <li>AJV (Validação)</li>
+                        <li>Winston (Logs)</li>
+                        <li>Socket.io</li>
+                        <li>Multer (Upload)</li>
+                        <li>Swagger (Documentação)</li>
+                        <li>UUID</li>
+                        <li>Date-fns</li>
+                    </ul>
+                </div>
+
+                <div class="tech-category">
+                    <h4>Desenvolvimento</h4>
+                    <ul class="tech-list">
+                        <li>Nodemon</li>
+                        <li>ESLint</li>
+                        <li>Jest (Testes)</li>
+                        <li>Cypress (E2E)</li>
+                        <li>Supertest</li>
+                        <li>Cross-env</li>
+                    </ul>
+                </div>
+
+                <div class="tech-category">
+                    <h4>Integrações</h4>
+                    <ul class="tech-list">
+                        <li>WhatsApp Business API</li>
+                        <li>Google Calendar API</li>
+                        <li>Pin Company (CEP)</li>
+                        <li>Meta Webhook</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section" id="modulos">
+        <div class="section-header">4. 🏢 Módulos do Sistema</div>
+        <div class="section-content">
+            <h3>Estrutura Modular</h3>
+            <p>O sistema GCI é organizado em módulos funcionais que atendem diferentes áreas da gestão municipal:</p>
+
+            <div class="module-card">
+                <div class="module-title">
+                    <span class="module-icon"></span>
+                    🏥 Módulo de Saúde
+                </div>
+                <p><strong>Objetivo:</strong> Gerenciar serviços de saúde do município</p>
+                <ul class="functionality-list">
+                    <li>Cadastro de Unidades de Saúde</li>
+                    <li>Gestão de Profissionais de Saúde</li>
+                    <li>Agendamento de Consultas e Exames</li>
+                    <li>Triagem de Pacientes</li>
+                    <li>Controle de Especialidades Médicas</li>
+                    <li>Gestão de Horários Disponíveis</li>
+                    <li>Tipos de Exames</li>
+                    <li>Relatórios e Dashboards</li>
+                </ul>
+            </div>
+
+            <div class="module-card">
+                <div class="module-title">
+                    <span class="module-icon"></span>
+                    🎓 Módulo de Educação
+                </div>
+                <p><strong>Objetivo:</strong> Gerenciar serviços educacionais do município</p>
+                <ul class="functionality-list">
+                    <li>Cadastro de Escolas</li>
+                    <li>Gestão de Matrículas</li>
+                    <li>Solicitações de Transferência</li>
+                    <li>Controle de Vagas</li>
+                    <li>Gestão de Secretarias de Educação</li>
+                    <li>Relatórios Educacionais</li>
+                </ul>
+            </div>
+
+            <div class="module-card">
+                <div class="module-title">
+                    <span class="module-icon"></span>
+                    👥 Módulo de Atendimento ao Cidadão
+                </div>
+                <p><strong>Objetivo:</strong> Centralizar atendimento e serviços aos cidadãos</p>
+                <ul class="functionality-list">
+                    <li>Protocolo de Atendimentos</li>
+                    <li>Chat Integrado (WhatsApp)</li>
+                    <li>Gestão de Mensagens</li>
+                    <li>Templates de Comunicação</li>
+                    <li>Acompanhamento de Solicitações</li>
+                    <li>Histórico de Interações</li>
+                </ul>
+            </div>
+
+            <div class="module-card">
+                <div class="module-title">
+                    <span class="module-icon"></span>
+                    ⚙️ Módulo de Administração
+                </div>
+                <p><strong>Objetivo:</strong> Gerenciar aspectos administrativos do sistema</p>
+                <ul class="functionality-list">
+                    <li>Gestão de Municípios</li>
+                    <li>Gestão de Usuários</li>
+                    <li>Controle de Secretarias</li>
+                    <li>Gestão de Serviços</li>
+                    <li>Configurações do Sistema</li>
+                    <li>Logs e Auditoria</li>
+                    <li>Dashboards Administrativos</li>
+                </ul>
+            </div>
+
+            <div class="module-card">
+                <div class="module-title">
+                    <span class="module-icon"></span>
+                    👤 Módulo de Cidadãos
+                </div>
+                <p><strong>Objetivo:</strong> Gerenciar dados e serviços dos cidadãos</p>
+                <ul class="functionality-list">
+                    <li>Cadastro de Cidadãos</li>
+                    <li>Perfil Completo do Cidadão</li>
+                    <li>Histórico de Atendimentos</li>
+                    <li>Documentos Anexos</li>
+                    <li>Comunicações Personalizadas</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="section" id="hierarquia">
+        <div class="section-header">5. 👑 Hierarquia de Usuários</div>
+        <div class="section-content">
+            <h3>Sistema de Roles e Permissões</h3>
+            <p>O sistema implementa um controle de acesso baseado em roles (funções) com hierarquia bem definida:</p>
+
+            <div class="user-roles">
+                <div class="role-card">
+                    <div class="role-title">🏛️ Admin Sistema</div>
+                    <p><strong>Nível:</strong> Máximo</p>
+                    <p><strong>Escopo:</strong> Todos os municípios</p>
+                    <ul class="functionality-list">
+                        <li>Gerenciar múltiplos municípios</li>
+                        <li>Criar/editar qualquer usuário</li>
+                        <li>Acessar todos os módulos</li>
+                        <li>Configurações globais</li>
+                        <li>Templates globais</li>
+                        <li>Logs e auditoria completa</li>
+                    </ul>
+                </div>
+
+                <div class="role-card">
+                    <div class="role-title">🏙️ Admin Município</div>
+                    <p><strong>Nível:</strong> Alto</p>
+                    <p><strong>Escopo:</strong> Município específico</p>
+                    <ul class="functionality-list">
+                        <li>Gerenciar seu município</li>
+                        <li>Criar usuários do município</li>
+                        <li>Configurar secretarias</li>
+                        <li>Acessar todos os módulos do município</li>
+                        <li>Relatórios municipais</li>
+                    </ul>
+                </div>
+
+                <div class="role-card">
+                    <div class="role-title">🏢 Gestor Secretaria</div>
+                    <p><strong>Nível:</strong> Médio</p>
+                    <p><strong>Escopo:</strong> Secretaria específica</p>
+                    <ul class="functionality-list">
+                        <li>Gerenciar sua secretaria</li>
+                        <li>Criar usuários da secretaria</li>
+                        <li>Módulos relacionados à secretaria</li>
+                        <li>Configurações da secretaria</li>
+                    </ul>
+                </div>
+
+                <div class="role-card">
+                    <div class="role-title">🏥 Gestor Saúde</div>
+                    <p><strong>Nível:</strong> Médio</p>
+                    <p><strong>Escopo:</strong> Módulo de Saúde</p>
+                    <ul class="functionality-list">
+                        <li>Gerenciar unidades de saúde</li>
+                        <li>Gestão de profissionais</li>
+                        <li>Agendamentos e triagens</li>
+                        <li>Relatórios de saúde</li>
+                    </ul>
+                </div>
+
+                <div class="role-card">
+                    <div class="role-title">🎓 Gestor Educação</div>
+                    <p><strong>Nível:</strong> Médio</p>
+                    <p><strong>Escopo:</strong> Módulo de Educação</p>
+                    <ul class="functionality-list">
+                        <li>Gerenciar escolas</li>
+                        <li>Processamento de matrículas</li>
+                        <li>Gestão de vagas</li>
+                        <li>Relatórios educacionais</li>
+                    </ul>
+                </div>
+
+                <div class="role-card">
+                    <div class="role-title">👩‍⚕️ Agente Saúde</div>
+                    <p><strong>Nível:</strong> Operacional</p>
+                    <p><strong>Escopo:</strong> Operações de Saúde</p>
+                    <ul class="functionality-list">
+                        <li>Realizar agendamentos</li>
+                        <li>Executar triagens</li>
+                        <li>Atender cidadãos</li>
+                        <li>Registrar atendimentos</li>
+                    </ul>
+                </div>
+
+                <div class="role-card">
+                    <div class="role-title">📞 Agente Atendimento</div>
+                    <p><strong>Nível:</strong> Operacional</p>
+                    <p><strong>Escopo:</strong> Atendimento ao Cidadão</p>
+                    <ul class="functionality-list">
+                        <li>Atender protocolos</li>
+                        <li>Responder chats</li>
+                        <li>Registrar solicitações</li>
+                        <li>Acompanhar demandas</li>
+                    </ul>
+                </div>
+
+                <div class="role-card">
+                    <div class="role-title">👤 Cidadão</div>
+                    <p><strong>Nível:</strong> Básico</p>
+                    <p><strong>Escopo:</strong> Autoatendimento</p>
+                    <ul class="functionality-list">
+                        <li>Visualizar próprios dados</li>
+                        <li>Acompanhar solicitações</li>
+                        <li>Solicitar serviços</li>
+                        <li>Chat com atendimento</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="info">
+                <strong>Importante:</strong> O sistema implementa controle granular onde usuários só podem acessar dados
+                do seu município/secretaria, garantindo isolamento completo entre diferentes entidades.
+            </div>
+        </div>
+    </div>
+
+    <div class="section" id="funcionalidades">
+        <div class="section-header">6. ⚡ Funcionalidades Principais</div>
+        <div class="section-content">
+            <h3>🏥 Funcionalidades do Módulo de Saúde</h3>
+
+            <h4>Gestão de Unidades de Saúde</h4>
+            <ul class="functionality-list">
+                <li>Cadastro completo de unidades (UBS, hospitais, clínicas)</li>
+                <li>Endereço e dados de contato</li>
+                <li>Horários de funcionamento</li>
+                <li>Especialidades atendidas</li>
+                <li>Status (ativo/inativo)</li>
+            </ul>
+
+            <h4>Profissionais de Saúde</h4>
+            <ul class="functionality-list">
+                <li>Cadastro de médicos, enfermeiros, técnicos</li>
+                <li>Registro em conselhos profissionais</li>
+                <li>Especialidades médicas</li>
+                <li>Vinculação com usuários do sistema</li>
+                <li>Integração com Google Calendar</li>
+                <li>Horários de trabalho</li>
+            </ul>
+
+            <h4>Sistema de Agendamentos</h4>
+            <ul class="functionality-list">
+                <li>Agendamento de consultas por especialidade</li>
+                <li>Agendamento de exames</li>
+                <li>Controle de horários disponíveis</li>
+                <li>Fila de espera</li>
+                <li>Confirmação automática via WhatsApp</li>
+                <li>Reagendamento e cancelamento</li>
+            </ul>
+
+            <h4>Triagem de Pacientes</h4>
+            <ul class="functionality-list">
+                <li>Classificação de risco</li>
+                <li>Coleta de dados vitais</li>
+                <li>Queixa principal</li>
+                <li>Encaminhamentos</li>
+                <li>Histórico de triagens</li>
+            </ul>
+
+            <h3>🎓 Funcionalidades do Módulo de Educação</h3>
+
+            <h4>Gestão de Escolas</h4>
+            <ul class="functionality-list">
+                <li>Cadastro de escolas municipais</li>
+                <li>Tipos de escola (urbana/rural)</li>
+                <li>Endereço e contatos</li>
+                <li>Capacidade e vagas disponíveis</li>
+                <li>Status operacional</li>
+            </ul>
+
+            <h4>Sistema de Matrículas</h4>
+            <ul class="functionality-list">
+                <li>Solicitações de matrícula online</li>
+                <li>Validação de documentos</li>
+                <li>Distribuição automática de vagas</li>
+                <li>Lista de espera</li>
+                <li>Transferências entre escolas</li>
+                <li>Renovação de matrículas</li>
+            </ul>
+
+            <h3>👥 Funcionalidades de Atendimento</h3>
+
+            <h4>Protocolo de Atendimentos</h4>
+            <ul class="functionality-list">
+                <li>Geração automática de protocolos</li>
+                <li>Categorização por tipo de serviço</li>
+                <li>Priorização de demandas</li>
+                <li>Acompanhamento de status</li>
+                <li>Histórico completo</li>
+                <li>Anexos de documentos</li>
+            </ul>
+
+            <h4>Chat Integrado</h4>
+            <ul class="functionality-list">
+                <li>WhatsApp Business API</li>
+                <li>Chat interno do sistema</li>
+                <li>Templates de mensagens</li>
+                <li>Respostas automáticas</li>
+                <li>Transferência entre agentes</li>
+                <li>Histórico de conversas</li>
+            </ul>
+
+            <h3>⚙️ Funcionalidades Administrativas</h3>
+
+            <h4>Gestão de Usuários</h4>
+            <ul class="functionality-list">
+                <li>Criação e edição de usuários</li>
+                <li>Controle de permissões</li>
+                <li>Alteração de senhas</li>
+                <li>Ativação/desativação</li>
+                <li>Logs de acesso</li>
+                <li>Relatórios de uso</li>
+            </ul>
+
+            <h4>Configurações do Sistema</h4>
+            <ul class="functionality-list">
+                <li>Parâmetros por município</li>
+                <li>Templates de comunicação</li>
+                <li>Integrações externas</li>
+                <li>Backup e restore</li>
+                <li>Monitoramento de performance</li>
+            </ul>
+
+            <h3>📊 Dashboards e Relatórios</h3>
+            <ul class="functionality-list">
+                <li>Dashboard executivo com KPIs</li>
+                <li>Relatórios de atendimento</li>
+                <li>Estatísticas de saúde</li>
+                <li>Métricas educacionais</li>
+                <li>Análise de performance</li>
+                <li>Exportação em PDF/Excel</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section" id="fluxos">
+        <div class="section-header">7. 🔄 Fluxos de Trabalho</div>
+        <div class="section-content">
+            <h3>Fluxo de Agendamento de Consulta</h3>
+            <div class="flow-diagram">
+                <div class="flow-box">Cidadão solicita</div>
+                <span class="arrow">→</span>
+                <div class="flow-box">Sistema verifica vagas</div>
+                <span class="arrow">→</span>
+                <div class="flow-box">Agendamento confirmado</div>
+                <span class="arrow">→</span>
+                <div class="flow-box">Notificação WhatsApp</div>
+            </div>
+
+            <h3>Fluxo de Atendimento ao Cidadão</h3>
+            <div class="flow-diagram">
+                <div class="flow-box">Protocolo gerado</div>
+                <span class="arrow">→</span>
+                <div class="flow-box">Triagem</div>
+                <span class="arrow">→</span>
+                <div class="flow-box">Atendimento</div>
+                <span class="arrow">→</span>
+                <div class="flow-box">Resolução</div>
+                <span class="arrow">→</span>
+                <div class="flow-box">Feedback</div>
+            </div>
+
+            <h3>Fluxo de Matrícula Escolar</h3>
+            <div class="flow-diagram">
+                <div class="flow-box">Solicitação online</div>
+                <span class="arrow">→</span>
+                <div class="flow-box">Validação docs</div>
+                <span class="arrow">→</span>
+                <div class="flow-box">Verificação vagas</div>
+                <span class="arrow">→</span>
+                <div class="flow-box">Matrícula efetivada</div>
+            </div>
+
+            <h3>Fluxo de Triagem de Saúde</h3>
+            <div class="flow-diagram">
+                <div class="flow-box">Chegada paciente</div>
+                <span class="arrow">→</span>
+                <div class="flow-box">Coleta dados</div>
+                <span class="arrow">→</span>
+                <div class="flow-box">Classificação risco</div>
+                <span class="arrow">→</span>
+                <div class="flow-box">Encaminhamento</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section" id="tutorial">
+        <div class="section-header">8. 📚 Tutorial de Uso</div>
+        <div class="section-content">
+            <h3>Primeiros Passos</h3>
+
+            <div class="tutorial-step">
+                <h4>Passo 1: Acesso ao Sistema</h4>
+                <p>1. Abra o navegador e acesse a URL do sistema</p>
+                <p>2. Insira seu email e senha na tela de login</p>
+                <p>3. Clique em "Entrar" para acessar o dashboard</p>
+            </div>
+
+            <div class="tutorial-step">
+                <h4>Passo 2: Navegação no Dashboard</h4>
+                <p>1. O dashboard principal mostra os módulos disponíveis para seu perfil</p>
+                <p>2. Use o menu lateral para navegar entre as seções</p>
+                <p>3. O ícone de notificações mostra alertas importantes</p>
+                <p>4. O perfil do usuário fica no canto superior direito</p>
+            </div>
+
+            <div class="tutorial-step">
+                <h4>Passo 3: Gestão de Usuários (Admin)</h4>
+                <p>1. Acesse "Administração" → "Usuários"</p>
+                <p>2. Clique em "+ Novo Usuário" para criar</p>
+                <p>3. Preencha os dados obrigatórios</p>
+                <p>4. Selecione o perfil/role adequado</p>
+                <p>5. Clique em "Salvar" para confirmar</p>
+            </div>
+
+            <div class="tutorial-step">
+                <h4>Passo 4: Cadastro de Unidade de Saúde</h4>
+                <p>1. Acesse "Saúde" → "Unidades de Saúde"</p>
+                <p>2. Clique em "+ Nova Unidade"</p>
+                <p>3. Preencha nome, endereço e dados de contato</p>
+                <p>4. Configure horários de funcionamento</p>
+                <p>5. Marque como "Ativa" e salve</p>
+            </div>
+
+            <div class="tutorial-step">
+                <h4>Passo 5: Agendamento de Consulta</h4>
+                <p>1. Acesse "Saúde" → "Agendamentos"</p>
+                <p>2. Clique em "+ Novo Agendamento"</p>
+                <p>3. Busque e selecione o cidadão</p>
+                <p>4. Escolha unidade, especialidade e profissional</p>
+                <p>5. Selecione data e horário disponível</p>
+                <p>6. Confirme o agendamento</p>
+            </div>
+
+            <div class="tutorial-step">
+                <h4>Passo 6: Atendimento via Chat</h4>
+                <p>1. Acesse "Atendimento" → "Chat"</p>
+                <p>2. Visualize conversas pendentes</p>
+                <p>3. Clique na conversa para abrir</p>
+                <p>4. Digite sua resposta ou use templates</p>
+                <p>5. Anexe documentos se necessário</p>
+                <p>6. Finalize ou transfira o atendimento</p>
+            </div>
+
+            <div class="tutorial-step">
+                <h4>Passo 7: Processamento de Matrícula</h4>
+                <p>1. Acesse "Educação" → "Solicitações de Matrícula"</p>
+                <p>2. Visualize solicitações pendentes</p>
+                <p>3. Clique na solicitação para detalhes</p>
+                <p>4. Verifique documentos anexados</p>
+                <p>5. Aprove ou solicite correções</p>
+                <p>6. Sistema enviará notificação automática</p>
+            </div>
+
+            <div class="tutorial-step">
+                <h4>Passo 8: Relatórios e Análises</h4>
+                <p>1. Acesse "Dashboard" para visão geral</p>
+                <p>2. Use filtros por período e categoria</p>
+                <p>3. Visualize gráficos e métricas</p>
+                <p>4. Exporte relatórios em PDF/Excel</p>
+                <p>5. Configure alertas automáticos</p>
+            </div>
+
+            <div class="warning">
+                <strong>Dicas Importantes:</strong>
+                <ul>
+                    <li>Sempre mantenha os dados atualizados</li>
+                    <li>Use o sistema de busca para encontrar informações rapidamente</li>
+                    <li>Verifique notificações regularmente</li>
+                    <li>Faça logout ao sair do computador</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="section" id="instalacao">
+        <div class="section-header">9. 🚀 Guia de Instalação</div>
+        <div class="section-content">
+            <h3>Pré-requisitos</h3>
+            <ul class="functionality-list">
+                <li>Node.js 18+ instalado</li>
+                <li>PostgreSQL 13+ instalado e configurado</li>
+                <li>Git para versionamento</li>
+                <li>Conta WhatsApp Business (opcional)</li>
+                <li>Chaves de API Google Calendar (opcional)</li>
+            </ul>
+
+            <h3>Instalação do Backend</h3>
+            <div class="code-block">
+                # Clone o repositório
+                git clone &lt;url-do-repositorio&gt;
+                cd GCI/gci-backend
+
+                # Instale as dependências
+                npm install
+
+                # Configure as variáveis de ambiente
+                cp .env.example .env
+                # Edite o arquivo .env com suas configurações
+
+                # Configure o banco de dados
+                # Execute os scripts SQL para criar as tabelas
+
+                # Inicie o servidor de desenvolvimento
+                npm run dev
+            </div>
+
+            <h3>Instalação do Frontend</h3>
+            <div class="code-block">
+                # Navegue para o frontend
+                cd ../gci-frontend
+
+                # Instale as dependências
+                npm install
+
+                # Configure as variáveis de ambiente
+                cp .env.example .env
+                # Configure a URL da API backend
+
+                # Inicie o servidor de desenvolvimento
+                npm run dev
+            </div>
+
+            <h3>Configuração do Banco de Dados</h3>
+            <div class="code-block">
+                -- Criar banco de dados
+                CREATE DATABASE gci_db;
+
+                -- Executar scripts de criação de tabelas
+                -- (Localizados em /database/migrations/)
+
+                -- Inserir dados iniciais
+                -- (Scripts em /database/seeds/)
+            </div>
+
+            <h3>Configurações de Produção</h3>
+            <div class="tutorial-step">
+                <h4>1. Limpeza do Projeto</h4>
+                <div class="code-block">
+                    # Remova arquivos e pastas desnecessários (testes, logs, scripts, seeds, relatórios)
+                    # Consulte _EXCLUSAO_PRODUCAO.txt para a lista detalhada
+                </div>
+            </div>
+            <div class="tutorial-step">
+                <h4>2. Build da Aplicação</h4>
+                <div class="code-block">
+                    # Frontend
+                    npm run build
+
+                    # Backend
+                    npm start
+                </div>
+            </div>
+            <div class="tutorial-step">
+                <h4>3. Configuração do Servidor Web</h4>
+                <p>Configure nginx ou Apache para servir a aplicação React (pasta <code>dist/</code>) e fazer proxy para
+                    a API Node.js</p>
+            </div>
+            <div class="tutorial-step">
+                <h4>4. SSL e Segurança</h4>
+                <p>Configure certificados SSL para HTTPS e implemente medidas de segurança adequadas</p>
+            </div>
+            <div class="tutorial-step">
+                <h4>5. Monitoramento</h4>
+                <p>Implemente monitoramento de performance, alertas e backups automáticos</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section" id="desenvolvimento">
+        <div class="section-header">10. 🛠️ Guia para Desenvolvedores</div>
+        <div class="section-content">
+            <h3>Estrutura de Desenvolvimento</h3>
+
+            <h4>📁 Organização de Código</h4>
+            <div class="code-block">
+                Frontend (React):
+                ├── components/ # Componentes reutilizáveis
+                │ ├── ui/ # Componentes base (Button, Input, etc.)
+                │ ├── layout/ # Componentes de layout
+                │ └── [modulo]/ # Componentes específicos por módulo
+                ├── pages/ # Páginas/rotas da aplicação
+                ├── hooks/ # Custom hooks
+                ├── contexts/ # Context providers
+                ├── services/ # Comunicação com API
+                └── utils/ # Funções utilitárias
+
+                Backend (Node.js):
+                ├── controllers/ # Controladores das rotas
+                ├── services/ # Lógica de negócio
+                ├── repositories/ # Acesso a dados
+                ├── middlewares/ # Middlewares Express
+                ├── routes/ # Definição de rotas
+                ├── schemas/ # Esquemas de validação
+                └── utils/ # Utilitários
+            </div>
+
+            <h4>🔧 Padrões de Código</h4>
+            <ul class="functionality-list">
+                <li>Use ES6+ modules (import/export)</li>
+                <li>Nomes de arquivos em camelCase</li>
+                <li>Componentes React em PascalCase</li>
+                <li>Funções utilitárias em camelCase</li>
+                <li>Constantes em UPPER_CASE</li>
+                <li>Use JSDoc para documentação</li>
+            </ul>
+
+            <h4>🎨 Padrões de UI</h4>
+            <ul class="functionality-list">
+                <li>Use Tailwind CSS para estilização</li>
+                <li>Componentes Radix UI para elementos base</li>
+                <li>Design responsivo obrigatório</li>
+                <li>Modo escuro/claro suportado</li>
+                <li>Acessibilidade (a11y) sempre considerada</li>
+            </ul>
+
+            <h4>🔒 Segurança</h4>
+            <ul class="functionality-list">
+                <li>JWT para autenticação</li>
+                <li>Validação de dados com AJV/Zod</li>
+                <li>Sanitização de inputs</li>
+                <li>Controle de CORS adequado</li>
+                <li>Logs de segurança</li>
+                <li>Rate limiting em APIs</li>
+            </ul>
+
+            <h4>🧪 Testes</h4>
+            <div class="code-block">
+                # Testes unitários (Backend)
+                npm test
+
+                # Testes E2E (Frontend)
+                npm run test
+
+                # Coverage
+                npm run test:coverage
+            </div>
+
+            <h4>📡 API Guidelines</h4>
+            <ul class="functionality-list">
+                <li>RESTful API design</li>
+                <li>Status codes HTTP padronizados</li>
+                <li>Documentação Swagger/OpenAPI</li>
+                <li>Versionamento de API</li>
+                <li>Paginação em listagens</li>
+                <li>Filtros e ordenação</li>
+            </ul>
+
+            <h4>🗃️ Banco de Dados</h4>
+            <ul class="functionality-list">
+                <li>Migrations para alterações de schema</li>
+                <li>Seeds para dados iniciais</li>
+                <li>Indexes para performance</li>
+                <li>Foreign keys e constraints</li>
+                <li>Backup automático</li>
+            </ul>
+
+            <h4>🚀 Deploy e CI/CD</h4>
+            <div class="code-block">
+                # Build para produção
+                npm run build
+
+                # Deploy automatizado
+                git push origin main
+                # Trigger deploy pipeline
+
+                # Rollback se necessário
+                npm run rollback
+            </div>
+
+            <div class="info">
+                <strong>Contribuindo:</strong> Para contribuir com o projeto, crie uma branch feature, desenvolva suas
+                alterações, escreva testes e abra um Pull Request com descrição detalhada das mudanças.
+            </div>
+        </div>
+    </div>
+
+    <div class="support-contact">
+        <h2>📞 Suporte e Contato</h2>
+        <p>Para suporte técnico, dúvidas ou sugestões, entre em contato com a equipe de desenvolvimento.</p>
+        <p><strong>Sistema GCI - Gestão de Cidades Inteligentes</strong></p>
+        <p>Versão 1.0.0 | Junho 2025</p>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+{
+  "name": "gci-project",
+  "version": "1.0.0",
+  "description": "Sistema de Gestão de Cidades Inteligentes (GCI)",
+  "scripts": {},
+  "devDependencies": {
+    "@babel/preset-env": "^7.27.2",
+    "@babel/preset-react": "^7.27.1",
+    "@testing-library/jest-dom": "^6.6.3",
+    "babel-jest": "^30.0.2",
+    "bcryptjs": "^3.0.2",
+    "cross-env": "^7.0.3",
+    "dotenv": "^17.0.0",
+    "eslint": "^9.29.0",
+    "eslint-import-resolver-node": "^0.3.9",
+    "eslint-plugin-import": "^2.32.0",
+    "identity-obj-proxy": "^3.0.0",
+    "pg": "^8.16.3"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "gci-project"
+  },
+  "keywords": [
+    "gci",
+    "municipios",
+    "react",
+    "nodejs",
+    "sistema-gestao"
+  ],
+  "author": "GCI Team",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.10.0",
+    "node-fetch": "^3.3.2"
+  }
+}

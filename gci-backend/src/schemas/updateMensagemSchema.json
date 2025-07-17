@@ -1,0 +1,31 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "UpdateMensagemAtendimentoInput",
+    "description": "Schema para atualizar o status de envio de uma mensagem",
+    "type": "object",
+    "properties": {
+        "status_envio_canal": {
+            "type": "string",
+            "enum": [
+                "pendente",
+                "enviado",
+                "entregue",
+                "lido",
+                "falhou",
+                "recebido_pelo_sistema"
+            ],
+            "description": "Novo status da mensagem no canal de origem."
+        },
+        "id_mensagem_canal_origem": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "maxLength": 255,
+            "description": "ID da mensagem na plataforma de origem, caso seja atualizado após o envio."
+        }
+    },
+    "required": [],
+    "additionalProperties": false,
+    "minProperties": 1
+}

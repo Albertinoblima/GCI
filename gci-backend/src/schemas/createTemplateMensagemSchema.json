@@ -1,0 +1,52 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "CreateTemplateMensagem",
+    "description": "Schema para criação de um novo template de mensagem.",
+    "type": "object",
+    "properties": {
+        "nome_template": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 100,
+            "description": "Nome único para identificar o template."
+        },
+        "evento_gatilho": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 100,
+            "description": "O evento do sistema que dispara este template."
+        },
+        "conteudo_template": {
+            "type": "string",
+            "minLength": 10,
+            "description": "O corpo da mensagem, pode conter variáveis como {{protocolo}} ou {{nome_cidadao}}."
+        },
+        "municipio_id": {
+            "type": [
+                "integer",
+                "null"
+            ],
+            "description": "ID do município (opcional, para templates globais)."
+        },
+        "secretaria_id": {
+            "type": [
+                "integer",
+                "null"
+            ],
+            "description": "ID da secretaria (opcional, para templates de um departamento específico)."
+        },
+        "servico_id": {
+            "type": [
+                "integer",
+                "null"
+            ],
+            "description": "ID do serviço (opcional, para templates de um serviço específico)."
+        }
+    },
+    "required": [
+        "nome_template",
+        "evento_gatilho",
+        "conteudo_template"
+    ],
+    "additionalProperties": false
+}

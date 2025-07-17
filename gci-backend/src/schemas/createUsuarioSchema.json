@@ -1,0 +1,80 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "CreateUsuarioInput",
+    "description": "Schema para a criação de um novo usuário do sistema",
+    "type": "object",
+    "properties": {
+        "municipio_id": {
+            "type": "integer",
+            "description": "ID do município ao qual o usuário pertence.",
+            "minimum": 1
+        },
+        "nome_completo": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 255,
+            "description": "Nome completo do usuário."
+        },
+        "email": {
+            "type": "string",
+            "format": "email",
+            "maxLength": 255,
+            "description": "Endereço de e-mail único do usuário."
+        },
+        "senha": {
+            "type": "string",
+            "minLength": 8,
+            "description": "Senha em texto plano para o novo usuário (será hasheada pelo backend)."
+        },
+        "cargo": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "maxLength": 100,
+            "description": "Cargo do usuário (opcional)."
+        },
+        "role": {
+            "type": "string",
+            "description": "Função do usuário no sistema.",
+            "enum": [
+                "admin_sistema",
+                "admin_municipio",
+                "gestor_secretaria",
+                "agente_atendimento",
+                "agente_saude",
+                "agente_educacao"
+            ]
+        },
+        "telefone": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "maxLength": 20,
+            "pattern": "^[0-9]{10,11}$",
+            "description": "Número de telefone do usuário (opcional)."
+        },
+        "ativo": {
+            "type": "boolean",
+            "default": true,
+            "description": "Indica se o usuário está ativo."
+        },
+        "two_factor_secret": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "description": "Segredo para autenticação de dois fatores (gerenciado pelo sistema)."
+        }
+    },
+    "required": [
+        "municipio_id",
+        "nome_completo",
+        "email",
+        "senha",
+        "role",
+        "ativo"
+    ],
+    "additionalProperties": false
+}
