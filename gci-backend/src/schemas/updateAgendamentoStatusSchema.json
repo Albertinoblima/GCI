@@ -1,0 +1,21 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "UpdateAgendamentoStatus",
+    "type": "object",
+    "properties": {
+        "status_agendamento": {
+            "type": "string",
+            "enum": [
+                "confirmado",
+                "cancelado_pelo_paciente",
+                "cancelado_pela_unidade",
+                "realizado",
+                "nao_compareceu"
+            ]
+        }
+    },
+    "required": [
+        "status_agendamento"
+    ],
+    "additionalProperties": false
+}

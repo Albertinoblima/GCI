@@ -1,0 +1,19 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "CreateTriagemSaude",
+    "type": "object",
+    "properties": {
+        "municipio_id": {
+            "type": "integer"
+        },
+        "dados_coletados": {
+            "type": "object",
+            "description": "Objeto JSON com os dados da triagem (sintomas, etc.)."
+        }
+    },
+    "required": [
+        "municipio_id",
+        "dados_coletados"
+    ],
+    "additionalProperties": false
+}

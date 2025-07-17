@@ -1,0 +1,49 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "UpdateSolicitacaoMatriculaInput",
+    "type": "object",
+    "properties": {
+        "nome_aluno": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "maxLength": 255
+        },
+        "data_nascimento_aluno": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "format": "date"
+        },
+        "serie_solicitada": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "maxLength": 50
+        },
+        "status_solicitacao": {
+            "type": "string",
+            "enum": [
+                "recebida",
+                "em_analise",
+                "aguardando_documentos",
+                "lista_espera",
+                "efetivada",
+                "negada",
+                "cancelada_cidadao",
+                "cancelada_secretaria"
+            ]
+        },
+        "observacoes_secretaria": {
+            "type": [
+                "string",
+                "null"
+            ]
+        }
+    },
+    "additionalProperties": false,
+    "minProperties": 1
+}

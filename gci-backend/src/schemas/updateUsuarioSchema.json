@@ -1,0 +1,66 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "UpdateUsuarioInput",
+    "description": "Schema para a atualização de um usuário existente",
+    "type": "object",
+    "properties": {
+        "municipio_id": {
+            "type": "integer",
+            "minimum": 1
+        },
+        "nome_completo": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 255
+        },
+        "email": {
+            "type": "string",
+            "format": "email",
+            "maxLength": 255
+        },
+        "senha": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "minLength": 8,
+            "description": "Nova senha (opcional). Se fornecida, a senha atual será substituída."
+        },
+        "cargo": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "maxLength": 100
+        },
+        "role": {
+            "type": "string",
+            "enum": [
+                "admin_municipio",
+                "gestor_secretaria",
+                "agente_atendimento",
+                "agente_saude",
+                "admin_sistema"
+            ]
+        },
+        "telefone": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "maxLength": 20,
+            "pattern": "^[0-9]{10,11}$"
+        },
+        "ativo": {
+            "type": "boolean"
+        },
+        "two_factor_secret": {
+            "type": [
+                "string",
+                "null"
+            ]
+        }
+    },
+    "additionalProperties": false,
+    "minProperties": 1
+}

@@ -1,0 +1,46 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Servico",
+  "description": "Schema para criação e atualização de um serviço oferecido por uma secretaria.",
+  "type": "object",
+  "properties": {
+    "nome": {
+      "type": "string",
+      "description": "Nome do serviço.",
+      "minLength": 5,
+      "maxLength": 200
+    },
+    "ativo": {
+      "type": "boolean",
+      "description": "Controla se o serviço está ativo e pode ser oferecido.",
+      "default": true
+    },
+    "tipo_servico": {
+      "type": "string",
+      "description": "Categoriza o serviço para roteamento e lógica de negócios.",
+      "enum": [
+        "agendamento_saude",
+        "solicitacao_infra",
+        "educacao_matricula",
+        "informacao_geral"
+      ]
+    },
+    "tempo_estimado": {
+      "type": "string",
+      "description": "Texto descritivo do tempo estimado para conclusão (ex: '5 dias úteis').",
+      "maxLength": 100
+    },
+    "documentos_necessarios": {
+      "type": "array",
+      "description": "Lista de documentos que o cidadão precisa fornecer.",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "nome",
+    "tipo_servico"
+  ],
+  "additionalProperties": false
+}

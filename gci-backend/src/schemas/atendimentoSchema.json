@@ -1,0 +1,99 @@
+{
+  "name": "Atendimento",
+  "type": "object",
+  "properties": {
+    "protocolo": {
+      "type": "string",
+      "description": "Número do protocolo único"
+    },
+    "municipio_id": {
+      "type": "string",
+      "description": "ID do município"
+    },
+    "secretaria_id": {
+      "type": "string",
+      "description": "ID da secretaria responsável"
+    },
+    "servico_id": {
+      "type": "string",
+      "description": "ID do serviço solicitado"
+    },
+    "cidadao_nome": {
+      "type": "string",
+      "description": "Nome do cidadão"
+    },
+    "cidadao_telefone": {
+      "type": "string",
+      "description": "Telefone/WhatsApp do cidadão"
+    },
+    "cidadao_email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email do cidadão"
+    },
+    "canal_origem": {
+      "type": "string",
+      "enum": [
+        "whatsapp",
+        "messenger",
+        "instagram",
+        "presencial",
+        "telefone",
+        "email"
+      ],
+      "description": "Canal de origem do atendimento"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "aguardando",
+        "em_andamento",
+        "pendente_cidadao",
+        "resolvido",
+        "fechado",
+        "cancelado"
+      ],
+      "default": "aguardando",
+      "description": "Status atual do atendimento"
+    },
+    "prioridade": {
+      "type": "string",
+      "enum": [
+        "baixa",
+        "normal",
+        "alta",
+        "urgente"
+      ],
+      "default": "normal",
+      "description": "Prioridade do atendimento"
+    },
+    "assunto": {
+      "type": "string",
+      "description": "Assunto/resumo do atendimento"
+    },
+    "descricao": {
+      "type": "string",
+      "description": "Descrição detalhada da solicitação"
+    },
+    "atendente_id": {
+      "type": "string",
+      "description": "ID do atendente responsável"
+    },
+    "data_limite": {
+      "type": "string",
+      "format": "date",
+      "description": "Data limite para resolução"
+    },
+    "observacoes_internas": {
+      "type": "string",
+      "description": "Observações internas do atendimento"
+    }
+  },
+  "required": [
+    "protocolo",
+    "municipio_id",
+    "secretaria_id",
+    "cidadao_nome",
+    "assunto"
+  ]
+}

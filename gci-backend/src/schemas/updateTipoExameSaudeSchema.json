@@ -1,0 +1,18 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "UpdateTipoExameSaude",
+    "description": "Schema para atualização de um tipo de exame de saúde.",
+    "type": "object",
+    "properties": {
+        "nome_exame": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 150,
+            "description": "O novo nome para o tipo de exame."
+        }
+    },
+    "required": [
+        "nome_exame"
+    ],
+    "additionalProperties": false
+}

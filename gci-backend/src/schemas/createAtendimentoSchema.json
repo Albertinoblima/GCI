@@ -1,0 +1,125 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "CreateAtendimentoInput",
+    "description": "Schema para a criação de um novo atendimento",
+    "type": "object",
+    "properties": {
+        "cidadao_id": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "ID do cidadão vinculado."
+        },
+        "municipio_id": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "ID do município do atendimento."
+        },
+        "secretaria_id": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "ID da secretaria para a qual o atendimento é direcionado."
+        },
+        "servico_id": {
+            "type": [
+                "integer",
+                "null"
+            ],
+            "minimum": 1,
+            "description": "ID do serviço específico (opcional)."
+        },
+        "canal_origem": {
+            "type": "string",
+            "maxLength": 50,
+            "enum": [
+                "whatsapp",
+                "messenger",
+                "instagram",
+                "webform",
+                "manual_painel",
+                "email",
+                "telefone"
+            ],
+            "description": "Canal pelo qual o atendimento foi iniciado."
+        },
+        "status": {
+            "type": "string",
+            "maxLength": 50,
+            "enum": [
+                "aberto",
+                "bot_interagindo",
+                "aguardando_atendente",
+                "em_andamento",
+                "aguardando_cidadao",
+                "resolvido_pelo_bot",
+                "resolvido",
+                "fechado",
+                "cancelado",
+                "encaminhado_infra"
+            ],
+            "default": "aberto",
+            "description": "Status inicial do atendimento."
+        },
+        "prioridade": {
+            "type": [
+                "integer",
+                "string",
+                "null"
+            ],
+            "description": "Prioridade do atendimento (Ex: 1, 2, 3 ou 'baixa', 'media', 'alta'). O service tratará a conversão se necessário.",
+            "oneOf": [
+                {
+                    "type": "integer",
+                    "enum": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ]
+                },
+                {
+                    "type": "string",
+                    "enum": [
+                        "baixa",
+                        "media",
+                        "normal",
+                        "alta",
+                        "urgente"
+                    ]
+                }
+            ]
+        },
+        "assunto_breve": {
+            "type": "string",
+            "maxLength": 255,
+            "description": "Um breve resumo ou título do assunto do atendimento."
+        },
+        "atendente_responsavel_id": {
+            "type": [
+                "integer",
+                "null"
+            ],
+            "minimum": 1,
+            "description": "ID do agente do sistema responsável (opcional na criação)."
+        },
+        "observacoes_internas": {
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "chatbot_state": {
+            "type": [
+                "object",
+                "null"
+            ]
+        }
+    },
+    "required": [
+        "cidadao_id",
+        "municipio_id",
+        "secretaria_id",
+        "canal_origem",
+        "assunto_breve"
+    ],
+    "additionalProperties": false
+}

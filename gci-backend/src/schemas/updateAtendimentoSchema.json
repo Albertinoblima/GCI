@@ -1,0 +1,95 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "UpdateAtendimentoInput",
+    "description": "Schema para a atualização de um atendimento",
+    "type": "object",
+    "properties": {
+        "secretaria_id": {
+            "type": "integer",
+            "minimum": 1
+        },
+        "servico_id": {
+            "type": [
+                "integer",
+                "null"
+            ],
+            "minimum": 1
+        },
+        "status": {
+            "type": "string",
+            "maxLength": 50,
+            "enum": [
+                "aberto",
+                "bot_interagindo",
+                "aguardando_atendente",
+                "em_andamento",
+                "aguardando_cidadao",
+                "resolvido_pelo_bot",
+                "resolvido",
+                "fechado",
+                "cancelado",
+                "encaminhado_infra"
+            ]
+        },
+        "data_fechamento": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "format": "date-time"
+        },
+        "atendente_responsavel_id": {
+            "type": [
+                "integer",
+                "null"
+            ],
+            "minimum": 1
+        },
+        "prioridade": {
+            "type": [
+                "integer",
+                "string",
+                "null"
+            ],
+            "oneOf": [
+                {
+                    "type": "integer",
+                    "enum": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ]
+                },
+                {
+                    "type": "string",
+                    "enum": [
+                        "baixa",
+                        "media",
+                        "normal",
+                        "alta",
+                        "urgente"
+                    ]
+                }
+            ]
+        },
+        "assunto_breve": {
+            "type": "string",
+            "maxLength": 255
+        },
+        "observacoes_internas": {
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "chatbot_state": {
+            "type": [
+                "object",
+                "null"
+            ]
+        }
+    },
+    "additionalProperties": false,
+    "minProperties": 1
+}

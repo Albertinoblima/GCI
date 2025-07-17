@@ -1,0 +1,35 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "UpdateEscolaInput",
+    "type": "object",
+    "properties": {
+        "nome": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 255
+        },
+        "tipo_escola": {
+            "type": "string",
+            "enum": [
+                "urbana",
+                "rural"
+            ]
+        },
+        "endereco_completo": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "maxLength": 500
+        },
+        "vagas_disponiveis_simulacao": {
+            "type": "integer",
+            "minimum": 0
+        },
+        "ativo": {
+            "type": "boolean"
+        }
+    },
+    "additionalProperties": false,
+    "minProperties": 1
+}

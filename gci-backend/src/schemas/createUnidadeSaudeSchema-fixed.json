@@ -1,0 +1,58 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "CreateUnidadeSaudeInput",
+    "description": "Schema para criar uma nova unidade de saúde",
+    "type": "object",
+    "properties": {
+        "municipio_id": {
+            "type": "integer",
+            "minimum": 1
+        },
+        "nome": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 255
+        },
+        "endereco_completo": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "maxLength": 500
+        },
+        "telefone": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "maxLength": 20
+        },
+        "tipo_unidade": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "maxLength": 100,
+            "enum": [
+                null,
+                "PSF",
+                "UBS",
+                "USB",
+                "Hospital",
+                "Clínica",
+                "Clinica Especializada",
+                "Laboratorio",
+                "UPA",
+                "Outro"
+            ]
+        },
+        "ativo": {
+            "type": "boolean",
+            "default": true
+        }
+    },
+    "required": [
+        "nome"
+    ],
+    "additionalProperties": false
+}

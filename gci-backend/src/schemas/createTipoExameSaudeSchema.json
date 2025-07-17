@@ -1,0 +1,23 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "CreateTipoExameSaude",
+    "description": "Schema para criação de um novo tipo de exame de saúde em um município.",
+    "type": "object",
+    "properties": {
+        "municipio_id": {
+            "type": "integer",
+            "description": "ID do município ao qual este tipo de exame pertence."
+        },
+        "nome_exame": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 150,
+            "description": "Nome do tipo de exame (ex: 'Raio-X de Tórax', 'Hemograma Completo')."
+        }
+    },
+    "required": [
+        "municipio_id",
+        "nome_exame"
+    ],
+    "additionalProperties": false
+}

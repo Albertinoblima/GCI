@@ -1,0 +1,42 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "UpdateTemplateMensagem",
+    "description": "Schema para atualização de um template de mensagem.",
+    "type": "object",
+    "properties": {
+        "nome_template": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 100
+        },
+        "evento_gatilho": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 100
+        },
+        "conteudo_template": {
+            "type": "string",
+            "minLength": 10
+        },
+        "municipio_id": {
+            "type": [
+                "integer",
+                "null"
+            ]
+        },
+        "secretaria_id": {
+            "type": [
+                "integer",
+                "null"
+            ]
+        },
+        "servico_id": {
+            "type": [
+                "integer",
+                "null"
+            ]
+        }
+    },
+    "minProperties": 1,
+    "additionalProperties": false
+}

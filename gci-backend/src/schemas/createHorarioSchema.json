@@ -1,0 +1,43 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "CreateHorarioPayload",
+    "description": "Schema para criação de um novo slot de horário na agenda de um profissional.",
+    "type": "object",
+    "properties": {
+        "profissional_id": {
+            "type": "integer"
+        },
+        "unidade_id": {
+            "type": "integer"
+        },
+        "especialidade_id": {
+            "type": "integer"
+        },
+        "data_horario_inicio": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "data_horario_fim": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "tipo_servico_saude": {
+            "type": "string",
+            "enum": [
+                "consulta",
+                "exame",
+                "procedimento",
+                "retorno"
+            ]
+        }
+    },
+    "required": [
+        "profissional_id",
+        "unidade_id",
+        "especialidade_id",
+        "data_horario_inicio",
+        "data_horario_fim",
+        "tipo_servico_saude"
+    ],
+    "additionalProperties": false
+}

@@ -1,0 +1,43 @@
+{
+  "name": "gci-backend",
+  "version": "1.0.0",
+  "description": "Backend para o Sistema de Gestão de Cidades Inteligentes",
+  "main": "src/server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
+    "test": "cross-env NODE_ENV=test jest --testTimeout=10000 --detectOpenHandles --forceExit",
+    "setup-test-users": "node scripts/setup-test-users.js",
+    "hash-password": "node hashSenha.js",
+    "seed-users": "node scripts/execute-seed-users.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ajv": "^8.17.1",
+    "ajv-formats": "^2.1.1",
+    "axios": "^1.10.0",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "date-fns": "^3.6.0",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2",
+    "multer": "^1.4.5-lts.1",
+    "node-fetch": "^3.3.2",
+    "pg": "^8.11.3",
+    "socket.io": "^4.7.5",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1",
+    "uuid": "^11.1.0",
+    "winston": "^3.13.0"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "jest": "^29.7.0",
+    "nodemon": "^3.1.0",
+    "supertest": "^7.1.1"
+  }
+}

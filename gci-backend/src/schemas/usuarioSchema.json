@@ -1,0 +1,40 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Usuario",
+    "description": "Schema para criação e atualização de um usuário do sistema.",
+    "type": "object",
+    "properties": {
+        "nome_completo": {
+            "type": "string",
+            "minLength": 3
+        },
+        "email": {
+            "type": "string",
+            "format": "email"
+        },
+        "senha": {
+            "type": "string",
+            "minLength": 8
+        },
+        "role": {
+            "type": "string",
+            "enum": [
+                "admin_municipio",
+                "gestor_secretaria",
+                "agente_atendimento"
+            ]
+        },
+        "municipio_id": {
+            "type": "integer"
+        },
+        "ativo": {
+            "type": "boolean"
+        }
+    },
+    "required": [
+        "nome_completo",
+        "email",
+        "role",
+        "municipio_id"
+    ]
+}

@@ -1,0 +1,33 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "UpdateHorarioDisponivelSaudeInput",
+    "description": "Schema para atualizar um slot de horário",
+    "type": "object",
+    "properties": {
+        "data_horario_inicio": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "data_horario_fim": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "status_slot": {
+            "type": "string",
+            "maxLength": 50,
+            "enum": [
+                "disponivel",
+                "bloqueado_manual",
+                "feriado"
+            ]
+        },
+        "observacao_interna": {
+            "type": [
+                "string",
+                "null"
+            ]
+        }
+    },
+    "additionalProperties": false,
+    "minProperties": 1
+}
