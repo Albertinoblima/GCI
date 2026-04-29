@@ -8,8 +8,10 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Carrega as variáveis de ambiente do arquivo .env na raiz do projeto
-const envPath = path.resolve(__dirname, '..', '..', '.env');
+// Carrega variáveis de ambiente priorizando o arquivo de produção quando aplicável.
+const isProductionEnv = process.env.NODE_ENV === 'production';
+const envFileName = isProductionEnv ? '.env.production' : '.env';
+const envPath = path.resolve(__dirname, '..', '..', envFileName);
 dotenvConfig({ path: envPath });
 
 // --- Validação das Variáveis de Ambiente ---

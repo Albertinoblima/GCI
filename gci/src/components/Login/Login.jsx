@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import './login-page.css';
 
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || '';
+
 export default function Login({ onLoginSuccess }) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -13,7 +15,7 @@ export default function Login({ onLoginSuccess }) {
         setLoading(true);
         setError('');
         try {
-            const response = await axios.post('/api/auth/login', {
+            const response = await axios.post(`${API_BASE_URL}/api/auth/login`, {
                 email: username,
                 senha: password
             });

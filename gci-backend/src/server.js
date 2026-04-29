@@ -18,8 +18,12 @@ const app = express();
 // --- Configuração de Middlewares Globais ---
 
 // 1. CORS: Deve ser o primeiro middleware para lidar com requisições de diferentes origens.
+const corsOrigins = process.env.NODE_ENV === 'production'
+    ? [config.frontendUrl]
+    : [config.frontendUrl, 'http://localhost:5173', 'http://localhost:5174'];
+
 app.use(cors({
-    origin: [config.frontendUrl, 'http://localhost:5173', 'http://localhost:5174'],
+    origin: corsOrigins,
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization', 'Accept', 'Origin', 'X-Requested-With']
