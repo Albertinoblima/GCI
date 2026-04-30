@@ -17,6 +17,7 @@ const dbConfig = {
     database: isTestEnvironment ? process.env.DB_DATABASE_TEST : process.env.DB_DATABASE,
     password: process.env.DB_PASSWORD,
     port: parseInt(process.env.DB_PORT, 10) || 5432, // Converte a porta para número
+    ...(process.env.DB_SSL === 'true' && { ssl: { rejectUnauthorized: false } }),
 };
 
 // Validação para garantir que as variáveis de ambiente essenciais foram carregadas
