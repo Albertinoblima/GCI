@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, Outlet, useNavigate } from 'react-router-dom';
+import { Link, NavLink, Outlet, useNavigate } from 'react-router-dom';
 import './index.css';
 
 const menuItems = [
@@ -30,16 +30,16 @@ export default function GCI({ currentUser, onLogout }) {
                     <ul>
                         {menuItems.map((item) => (
                             <li key={item.path}>
-                                <Link to={item.path} activeclassname="gci-active">
+                                <NavLink to={item.path} className={({ isActive }) => (isActive ? 'gci-active' : '')}>
                                     <span className="nav-icon">{item.icon}</span>
                                     <span className="nav-text">{item.label}</span>
-                                </Link>
+                                </NavLink>
                             </li>
                         ))}
                     </ul>
                 </nav>
                 <div className="gci-user-menu">
-                    <span>{currentUser ? currentUser.name : 'Usuário'}</span>
+                    <span>{currentUser ? (currentUser.nome || currentUser.name) : 'Usuario'}</span>
                     <button onClick={handleLogout}>Sair</button>
                 </div>
             </aside>

@@ -5,6 +5,37 @@ import GCI from './GCI'; // Seu layout principal do painel
 import Login from './components/Login/Login';
 import './index.css'; // CSS Global
 
+const DashboardHome = ({ currentUser }) => (
+    <div>
+        <h2>Visao Geral</h2>
+        <p>Bem-vindo, {(currentUser && (currentUser.nome || currentUser.name)) || 'Usuario'}.</p>
+        <div className="gci-stats-grid">
+            <div className="gci-stat-card">
+                <h3>Atendimentos Hoje</h3>
+                <div className="gci-stat-number">0</div>
+                <div className="gci-stat-change">Aguardando integracao</div>
+            </div>
+            <div className="gci-stat-card">
+                <h3>Usuarios Ativos</h3>
+                <div className="gci-stat-number">0</div>
+                <div className="gci-stat-change">Aguardando integracao</div>
+            </div>
+            <div className="gci-stat-card">
+                <h3>Servicos Disponiveis</h3>
+                <div className="gci-stat-number">0</div>
+                <div className="gci-stat-change">Aguardando integracao</div>
+            </div>
+        </div>
+    </div>
+);
+
+const SectionPlaceholder = ({ title, description }) => (
+    <div>
+        <h2>{title}</h2>
+        <p>{description}</p>
+    </div>
+);
+
 // Componente para Rotas Protegidas
 const ProtectedRoute = ({ isAuthenticated, children }) => {
     if (!isAuthenticated) {
@@ -64,14 +95,23 @@ function App() {
 
                 {/* Rotas Protegidas */}
                 <Route element={<ProtectedRoute isAuthenticated={isAuthenticated} />}>
-                    {/* GCI agora é o layout para as rotas filhas */}
-                    <Route path="/*" element={<GCI currentUser={currentUser} onLogout={handleLogout} />} />
-                    {/*
-                        Dentro de GCI.js, você terá mais <Routes> para as sub-páginas do painel
-                        Ex: /dashboard, /atendimentos, etc.
-                        A rota "/*" aqui significa que qualquer rota que não seja /login e que esteja
-                        autenticada será gerenciada pelo roteador dentro de GCI.js
-                    */}
+                    <Route path="/" element={<GCI currentUser={currentUser} onLogout={handleLogout} />}>
+                        <Route path="dashboard" element={<DashboardHome currentUser={currentUser} />} />
+                        <Route
+                            path="atendimentos"
+                            element={<SectionPlaceholder title="Atendimentos" description="Modulo em construcao." />}
+                        />
+                        <Route
+                            path="usuarios"
+                            element={<SectionPlaceholder title="Usuarios" description="Modulo em construcao." />}
+                        />
+                        <Route
+                            path="configuracoes"
+                            element={<SectionPlaceholder title="Configuracoes" description="Modulo em construcao." />}
+                        />
+                        <Route index element={<Navigate to="/dashboard" replace />} />
+                        <Route path="*" element={<Navigate to="/dashboard" replace />} />
+                    </Route>
                 </Route>
 
                 {/* Rota padrão: se autenticado vai para dashboard, senão para login */}

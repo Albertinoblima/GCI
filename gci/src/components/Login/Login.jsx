@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './login-page.css';
+import logoGci from '../../IMG/Logo-sem-fundo.svg';
 
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || '';
 
@@ -34,7 +35,7 @@ export default function Login({ onLoginSuccess }) {
         <div className="login-page-container">
             <form className="login-container" onSubmit={handleSubmit}>
                 <div className="login-logo">
-                    <img src="/Logo-sem-fundo.svg" alt="Logo GCI" height={64} />
+                    <img src={logoGci} alt="Logo GCI" height={64} />
                 </div>
                 <h2 className="login-title">Acesso ao Sistema</h2>
                 <div className="login-subtitle">Entre com suas credenciais</div>
